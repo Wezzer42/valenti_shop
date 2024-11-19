@@ -1,0 +1,2 @@
+postgres: ошибка доступа к каталогу "/usr/local/pgsql/data": Нет такого файла или каталога
+Запустите initdb или pg_basebackup для инициализации каталога данных PostgreSQL.

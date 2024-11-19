@@ -1,0 +1,478 @@
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.072 seconds, with status 200
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.034 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '37'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.026 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.041 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.044 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.051 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '39.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '39.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.033 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.041 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.035 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '41.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '41.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.114 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.046 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.027 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.027 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '46.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '46.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.031 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 47.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.080 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '35.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 35.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.051 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '49'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 49
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.066 seconds, with status 200
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '35.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '35.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.044 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.054 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '36.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.031 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.080 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.024 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.024 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.022 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.025 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.036 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.038 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.036 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.088 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.091 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.045 seconds, with status 200
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.051 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.025 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.027 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.027 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.030 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.035 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.036 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.040 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.025 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.038 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.035 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.040 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '46'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '46'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.037 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.047 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '48.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '48.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.061 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '50.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.046 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '51.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.041 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.048 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.042 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.063 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '49.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '49.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.024 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '50'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '50'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.073 seconds, with status 200
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.060 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.028 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '39'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.038 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '41'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.063 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.025 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.023 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.038 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.058 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.031 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.031 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '46'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '46'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.036 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.024 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '48.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '48.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.035 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.025 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '47'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.026 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.048 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.073 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.060 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '49.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '50.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '50.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.023 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '51.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.040 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '49'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.036 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '50'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.046 seconds, with status 200
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.028 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '36'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.026 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '45'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.095 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '37'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.037 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '45.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 45.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.040 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '46.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 46.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.096 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 47
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.041 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.032 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '38.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.029 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '47.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 47.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.056 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '37.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.031 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '39.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '39.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.076 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.045 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '40.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.052 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '41.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '41.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.039 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.023 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '42.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.026 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '43'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.038 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:oscar.alerts:Sending alerts for '44'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.050 seconds, with status 200
+INFO:oscar.alerts:Sending alerts for '44.5'
+INFO:oscar.alerts:Sent 0 notifications and 0 messages
+INFO:django.core.management.commands.shell:No price: New Balance NB 530 D, 44.5
+INFO:pysolr:Finished 'http://127.0.0.1:8983/solr/valenti/update/?commit=true' (post) with body '<add><doc>' in 0.049 seconds, with status 200

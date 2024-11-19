@@ -1,0 +1,8 @@
+/valentishop/.env
+/__pycache__
+/valentishop/db.sqlite3
+/oscar
+/valentishop/valentishop/static_media
+/valentishop/.env.dev
+/valentishop/.env.staging
+/valentishop/cache
