@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<form class="search-form d-flex align-items-center mx-3" method="GET" action="{% url 'search:search' %}">
+    <input 
+        type="text" 
+        class="form-control search-input" 
+        name="q" 
+        id="id_q" 
+        placeholder="{% trans 'Search' %}" 
+        aria-label="{% trans 'Search' %}">
+    <button 
+        class="btn search-btn" 
+        type="submit">
+        <i class="fas fa-search"></i>
+    </button>
+</form>

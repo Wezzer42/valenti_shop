@@ -12,29 +12,35 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from oscar.defaults import *
+from oscar.defaults import *  # noqa: F403
 from django.utils.translation import gettext_lazy as _
+
 from dotenv import load_dotenv
 
 load_dotenv()
 
-PROJECT_DIR=os.path.dirname(__file__)
+PROJECT_DIR = os.path.dirname(__file__)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', x)  # noqa: E731
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.getenv('DEBUG'))
+DEBUG = int(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS')]
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
 
 # Application definition
 
@@ -54,11 +60,11 @@ INSTALLED_APPS = [
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
     'oscar.apps.shipping.apps.ShippingConfig',
-    'oscar.apps.catalogue.apps.CatalogueConfig',
+    'apps.catalogue.apps.CatalogueConfig',
     'oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig',
     'oscar.apps.communication.apps.CommunicationConfig',
-    'oscar.apps.partner.apps.PartnerConfig',
-    'oscar.apps.basket.apps.BasketConfig',
+    'apps.partner.apps.PartnerConfig',
+    'apps.basket.apps.BasketConfig',
     'oscar.apps.payment.apps.PaymentConfig',
     'oscar.apps.offer.apps.OfferConfig',
     'oscar.apps.order.apps.OrderConfig',
@@ -79,25 +85,27 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig',
     'oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig',
     'oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig',
-
+    'apps.forms',
     # 3rd-party apps that oscar depends on
     'widget_tweaks',
     'haystack',
     'treebeard',
     'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     'django_tables2',
+    'storages',
+    'modeltranslation',
 ]
 
-
-OSCAR_SHOP_NAME = "VALENTI"
-OSCAR_DEFAULT_CURRENCY = "RUB"
-
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_LANGUAGES = ('en', 'ru')
+OSCAR_SHOP_NAME = 'VALENTI'
+OSCAR_DEFAULT_CURRENCY = 'RUB'
 OSCAR_SEARCH_FACETS = {
-    "fields": {
+    'fields': {
         # The key for these dicts will be used when passing facet data
         # to the template. Same for the 'queries' dict below.
-        "product_class": {"name": _("Type"), "field": "product_class"},
-        "rating": {"name": _("Rating"), "field": "rating"},
+        'product_class': {'name': _('Type'), 'field': 'product_class'},
+        'rating': {'name': _('Rating'), 'field': 'rating'},
         # You can specify an 'options' element that will be passed to the
         # SearchQuerySet.facet() call.
         # For instance, with Elasticsearch backend, 'options': {'order': 'term'}
@@ -108,17 +116,18 @@ OSCAR_SEARCH_FACETS = {
         # http://wiki.apache.org/solr/SimpleFacetParameters#facet.method
         # 'options': {'missing': 'true'}
     },
-    "queries": {
-        "price_range": {
-            "name": _("Price range"),
-            "field": "price",
-            "queries": [
+
+    'queries': {
+        'price_range': {
+            'name': _('Price range'),
+            'field': 'price',
+            'queries': [
                 # This is a list of (name, query) tuples where the name will
                 # be displayed on the front-end.
-                (_("0 to 5000"), "[0 TO 5000]"),
-                (_("5000 to 10000"), "[5000 TO 10000]"),
-                (_("10000 to 15000"), "[10000 TO 15000]"),
-                (_("15000+"), "[15000 TO *]"),
+                (_('0 to 5000'), '[0 TO 5000]'),
+                (_('5000 to 10000'), '[5000 TO 10000]'),
+                (_('10000 to 15000'), '[10000 TO 15000]'),
+                (_('15000+'), '[15000 TO *]'),
             ],
         },
     },
@@ -142,7 +151,10 @@ ROOT_URLCONF = 'valentishop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            location('templates'),
+            location('apps/forms/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,17 +179,15 @@ WSGI_APPLICATION = 'valentishop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('SQL_ENGINE'),
-        'NAME': os.getenv('SQL_DATABASE'),
-        'USER': os.getenv('SQL_USER'),
-        'PASSWORD': os.getenv('SQL_PASSWORD'),
-        'HOST': os.getenv('SQL_HOST'),
-        'PORT': os.getenv('SQL_PORT'),
+        'ENGINE': os.environ.get('SQL_ENGINE'),
+        'NAME': os.environ.get('SQL_DATABASE'),
+        'USER': os.environ.get('SQL_USER'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD'),
+        'HOST': os.environ.get('SQL_HOST'),
+        'PORT': os.environ.get('SQL_PORT'),
         'ATOMIC_REQUESTS': True,
     }
 }
-
-
 
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
@@ -218,9 +228,33 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
-MEDIA_ROOT= os.path.join(PROJECT_DIR,'static_media/')
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
+
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'valentishop.storage_backends.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'valentishop.storage_backends.PublicMediaStorage'
+    # s3 private media settings
+    PRIVATE_MEDIA_LOCATION = 'private'
+    PRIVATE_FILE_STORAGE = 'valentishop.storage_backends.PrivateMediaStorage'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'mediafiles'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -230,10 +264,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr/valenti',
+        'URL': os.environ.get('SOLR_URL'),
         'INCLUDE_SPELLING': True,
-        'ADMIN_URL' : 'http://127.0.0.1:8983/solr/admin/cores'
+        'ADMIN_URL': os.environ.get('SOLR_ADMIN_URL')
     },
 }
-
-

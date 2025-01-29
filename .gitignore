@@ -3,7 +3,12 @@ __pycache__
 valentishop/db.sqlite3
 /oscar
 valentishop/valentishop/static_media
-valentishop/.env.dev
-valentishop/.env.staging
+.env.dev
+.env.staging
+.env.staging.proxy-companion
+.env.prod
+.env.prod.proxy-companion
 valentishop/cache
 valentishop/valentishop/__pycache__
+.env.dev
+valentishop/product_images

@@ -1,0 +1,116 @@
+/* Импортируем шрифт Poppins из Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+
+/* Оформление для бренда */
+.brand-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Полужирный текст */
+    color: #ffffff; /* Белый цвет текста */
+    font-size: 2.2rem; /* Размер шрифта */
+    text-transform: uppercase; /* Заглавные буквы */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+.brand-title:hover {
+    color: #f0f0f0; /* Светлее при наведении */
+    text-decoration: none; /* Убирает подчеркивание */
+}
+
+.brand-tagline {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Обычный текст */
+    color: #d3d3d3; /* Сероватый оттенок для подзаголовка */
+    font-size: 1.1rem; /* Небольшой размер шрифта */
+    display: block; /* Размещаем под заголовком */
+    margin-top: 0.3rem; /* Отступ сверху */
+}
+
+/* Стили формы поиска */
+.search-form {
+    background-color: #f5f5f5; /* Светлый серый фон */
+    border-radius: 5px; /* Закругленные края */
+    padding: 1px 10px; /* Внутренние отступы */
+    border: none; /* Убираем рамку */
+    width: 100%; /* Растягиваем по контейнеру */
+    max-width: 600px; /* Ограничиваем максимальную ширину */
+}
+
+.search-input {
+    border: none; /* Убираем рамку вокруг текстового поля */
+    background: none; /* Прозрачный фон */
+    outline: none; /* Убираем подсветку при фокусе */
+    flex: 1; /* Растягиваем текстовое поле */
+    padding: 5px 10px; /* Добавляем внутренние отступы */
+    font-size: 16px; /* Размер текста */
+    box-shadow: none !important; /* Убираем тень */
+    background-color: #f5f5f5; /* Светлый серый фон */
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        width: 30%;
+    }
+}
+
+@media (max-width: 992px) {
+    .search-form {
+        width: 50%;
+    }
+}
+
+.search-btn {
+    background: black; /* Прозрачный фон кнопки */
+    border: none; /* Убираем рамку кнопки */
+    outline: none; /* Убираем подсветку кнопки */
+    padding: 5px; /* Отступы кнопки */
+    color: #f5f5f5; /* Цвет иконки */
+    cursor: pointer; /* Указатель при наведении */
+    font-size: 20px; /* Размер иконки */
+}
+
+.search-btn:hover {
+    color: #f0f0f0; /* Цвет иконки при наведении */
+}
+
+/* Карточка размера */
+/* Контейнер для всех радио-кнопок */
+.radio-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+/* Стили для опций */
+.radio-option {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    user-select: all;
+    transition: all 0.3s ease;
+}
+
+/* Скрываем стандартные радио-кнопки */
+.radio-option input {
+    display: inside;
+}
+
+/* Подсветка выбранной опции через CSS */
+.radio-option input:checked + span {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+/* Ховер эффект для улучшения UX */
+.radio-option:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}

@@ -1,0 +1,24 @@
+{% load currency_filters %}
+{% load i18n %}
+
+<div class="basket-mini col-sm-5 text-right d-none d-md-block">
+    <div class="btn-group dropright"> <!-- Используем dropright для появления дропдауна слева -->
+        
+        <!-- Кнопка корзины с белой иконкой -->
+        <button type="button" class="{% block mini_basket_btn_classes %}btn btn-sm border-0 text-white{% endblock %}" 
+                onclick="window.location.href='{% url 'basket:summary' %}';">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+
+        <!-- Кнопка для открытия дропдауна с белой стрелкой вниз -->
+        <button type="button" class="{% block mini_basket_toggle_classes %}btn btn-sm border-0 text-white dropdown-toggle dropdown-toggle-split{% endblock %}" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-chevron-down"></i> <!-- Стрелочка вниз -->
+        </button>
+
+        <!-- Дропдаун меню: появляется внизу и слева -->
+        <div class="{% block mini_basket_dropdown_classes %}dropdown-menu{% endblock %}" style="left: -110%; top: 100%;">
+            {% include "oscar/basket/partials/basket_quick.html" %}
+        </div>
+    </div>
+</div>

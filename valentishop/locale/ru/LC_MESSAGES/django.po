@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 13:29+0000\n"
+"POT-Creation-Date: 2024-11-22 17:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: valentishop/settings.py:93
+#: valentishop/settings.py:103
 msgid "Type"
 msgstr ""
 
-#: valentishop/settings.py:94
+#: valentishop/settings.py:104
 msgid "Rating"
 msgstr ""
 
-#: valentishop/settings.py:107
+#: valentishop/settings.py:118
 msgid "Price range"
 msgstr ""
 
-#: valentishop/settings.py:112
+#: valentishop/settings.py:123
 msgid "0 to 5000"
 msgstr ""
 
-#: valentishop/settings.py:113
+#: valentishop/settings.py:124
 msgid "5000 to 10000"
 msgstr ""
 
-#: valentishop/settings.py:114
+#: valentishop/settings.py:125
 msgid "10000 to 15000"
 msgstr ""
 
-#: valentishop/settings.py:115
+#: valentishop/settings.py:126
 msgid "15000+"
 msgstr ""

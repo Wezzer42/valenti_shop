@@ -25,4 +25,7 @@ urlpatterns = [
     path("pages/", include("django.contrib.flatpages.urls")),
     path('', include(apps.get_app_config('oscar').urls[0])),
     path('i18n/', include('django.conf.urls.i18n')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if bool(settings.DEBUG):
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

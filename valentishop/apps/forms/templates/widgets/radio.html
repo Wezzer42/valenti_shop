@@ -1,0 +1,23 @@
+{% with id=widget.attrs.id %}
+<div {% if id %}id="{{ id }}"{% endif %} class="radio-container {% if widget.attrs.class %}{{ widget.attrs.class }}{% endif %}">
+    {% for group, options, index in widget.optgroups %}
+        {% if group %}
+            <div class="radio-group-title"><label>{{ group }}</label></div>
+        {% endif %}
+
+        <!-- Обёртка для радио-кнопки и визуальная стилизация -->
+        {% for option in options %}
+        <label class="radio-option btn btn-outline-secondary m-2">
+            <input 
+                type="radio" 
+                name="{{ widget.name }}" 
+                value="{{ option.value }}"
+                id="{{ option.attrs.id }}"
+                class="d-none"
+                {% if option.attrs.checked %}checked{% endif %}>
+            <span>{{ option.label }}</span>
+        </label>
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endwith %}

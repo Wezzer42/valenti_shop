@@ -1,0 +1,9 @@
+location /static/ {
+  alias /home/valentishop/web/staticfiles/;
+  add_header Access-Control-Allow-Origin *;
+}
+
+location /media/ {
+  alias /home/valentishop/web/mediafiles/;
+  add_header Access-Control-Allow-Origin *;
+}
