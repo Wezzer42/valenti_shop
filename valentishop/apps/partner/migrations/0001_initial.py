@@ -10,7 +10,6 @@ from django.conf import settings
 models_AutoField = import_string(settings.DEFAULT_AUTO_FIELD)
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [

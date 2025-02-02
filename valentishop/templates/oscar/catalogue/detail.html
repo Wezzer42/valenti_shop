@@ -7,6 +7,7 @@
 {% load display_tags %}
 {% load i18n %}
 {% load purchase_info_tags %}
+{%load currency_filters %}
 {% load static %}
 
 {% block title %}
@@ -59,6 +60,7 @@
 
         {% block product_main %}
         <div class="col-sm-6 product_main">
+            <h2>{{ product }}</h2>
             {% comment %}
                 This is a bit clunky here.  Better to have some kind of JS-driven dashboard menu that
                 pops out when clicked.  A bit like the Django-Debug-Toolbar button
@@ -71,7 +73,7 @@
             <h1>{{ product.get_title }}</h1>
 
             {% block product_stock_record %}
-                {% include "oscar/catalogue/partials/stock_record.html" with verbose=1 %}
+                {% include "oscar/catalogue/partials/stock_record.html" %}
             {% endblock %}
 
             {% iffeature "reviews" %}

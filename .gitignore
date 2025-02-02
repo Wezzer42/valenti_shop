@@ -12,3 +12,5 @@ valentishop/cache
 valentishop/valentishop/__pycache__
 .env.dev
 valentishop/product_images
+valentishop/staticfiles
+valentishop/mediafiles
