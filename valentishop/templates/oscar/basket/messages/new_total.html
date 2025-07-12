@@ -2,21 +2,32 @@
 {% load currency_filters %}
 
 {% if basket.is_empty %}
-    {% trans "Your basket is now empty" %}
+    <span class="text-sm text-gray-800">
+        {% trans "Your basket is now empty" %}
+    </span>
 {% else %}
     {% if basket.is_tax_known %}
         {% blocktrans with total=basket.total_incl_tax|currency:basket.currency %}
-        Your basket total is now <strong>{{ total }}</strong>
+            <span class="text-sm text-gray-800">
+                Your basket total is now <strong class="font-medium">{{ total }}</strong>
+            </span>
         {% endblocktrans %}
     {% else %}
         {% blocktrans with total=basket.total_excl_tax|currency:basket.currency %}
-        Your basket total is now <strong>{{ total }}</strong>
+            <span class="text-sm text-gray-800">
+                Your basket total is now <strong class="font-medium">{{ total }}</strong>
+            </span>
         {% endblocktrans %}
     {% endif %}
 {% endif %}
 
 {% if include_buttons %}
-    <br>
-    <a href="{% url 'basket:summary' %}" class="btn btn-info">{% trans "View basket" %}</a>
-    <a href="{% url 'checkout:index' %}" class="btn btn-info">{% trans "Checkout now" %}</a>
+    <div class="mt-3 space-x-2">
+        <a href="{% url 'basket:summary' %}" class="inline-block bg-blue-100 text-blue-800 hover:bg-blue-200 text-sm px-4 py-2 rounded">
+            {% trans "View basket" %}
+        </a>
+        <a href="{% url 'checkout:index' %}" class="inline-block bg-blue-600 text-white hover:bg-blue-700 text-sm px-4 py-2 rounded">
+            {% trans "Checkout now" %}
+        </a>
+    </div>
 {% endif %}

@@ -2,57 +2,67 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{% url 'customer:wishlists-list' %}">{% trans 'Wish Lists' %}</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-                {% if wishlist %}
-                    {{ wishlist.name }}
-                {% else %}
-                    {% trans "Create" %}
-                {% endif %}
-            </li>
-        </ol>
-    </nav>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+    <ol class="list-none p-0 inline-flex space-x-2">
+      <li>
+        <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">{% trans 'Home' %}</a>
+        <span>/</span>
+      </li>
+      <li>
+        <a href="{% url 'customer:summary' %}" class="text-blue-600 hover:underline">{% trans 'Account' %}</a>
+        <span>/</span>
+      </li>
+      <li>
+        <a href="{% url 'customer:wishlists-list' %}" class="text-blue-600 hover:underline">{% trans 'Wish Lists' %}</a>
+        <span>/</span>
+      </li>
+      <li class="text-gray-700" aria-current="page">
+        {% if wishlist %}
+          {{ wishlist.name }}
+        {% else %}
+          {% trans "Create" %}
+        {% endif %}
+      </li>
+    </ol>
+  </nav>
 {% endblock %}
 
 {% block tabcontent %}
-    <form method="post" data-behaviours="lock">
-        {% csrf_token %}
-        {{ shared_emails_formset.management_form }}
+  <form method="post" data-behaviours="lock" class="space-y-6">
+    {% csrf_token %}
+    {{ shared_emails_formset.management_form }}
 
-        {% if not wishlist %}
-            <p>{% trans "What should your new wish list be called?" %}</p>
-        {% endif %}
-        {% include "oscar/partials/form_fields.html" %}
-        {% if product %}
-            <p>
-                {% blocktrans with title=product.get_title %}
-                    After your wishlist is created, <strong>{{ title }}</strong> will be added.
-                {% endblocktrans %}
-            </p>
-        {% endif %}
+    {% if not wishlist %}
+      <p class="text-gray-700">{% trans "What should your new wish list be called?" %}</p>
+    {% endif %}
 
-        <div class="wishlist-shared-emails mt-5">
-            <h3>{% trans "Share wishlist" %}</h3>
-            <small>
-                {% trans "If you want to share your wishlist with others, you can add their email addresses below. The visibility must be set to shared in order for this to work." %}
-            </small>
-            {% for form in shared_emails_formset %}
-                {% include "oscar/partials/form_fields.html" with form=form %}
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-primary" type="submit" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button>
-            {% trans "or" %} <a href="#" onclick="history.go(-1);return false" >{% trans "cancel" %}</a>.
-        </div>
-    </form>
-{% endblock tabcontent %}
+    {% include "oscar/partials/form_fields.html" %}
+
+    {% if product %}
+      <p class="text-gray-700">
+        {% blocktrans with title=product.get_title %}
+          After your wishlist is created, <strong>{{ title }}</strong> will be added.
+        {% endblocktrans %}
+      </p>
+    {% endif %}
+
+    <div class="wishlist-shared-emails mt-5 space-y-4">
+      <h3 class="text-base font-semibold text-gray-800">{% trans "Share wishlist" %}</h3>
+      <small class="text-sm text-gray-600 block">
+        {% trans "If you want to share your wishlist with others, you can add their email addresses below. The visibility must be set to shared in order for this to work." %}
+      </small>
+      {% for form in shared_emails_formset %}
+        {% include "oscar/partials/form_fields.html" with form=form %}
+      {% endfor %}
+    </div>
+
+    <div class="pt-2">
+      <button type="submit" class="inline-flex items-center px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md" data-loading-text="{% trans 'Saving...' %}">
+        {% trans "Save" %}
+      </button>
+      <a href="#" onclick="history.go(-1);return false" class="ml-4 text-sm text-gray-600 hover:underline">
+        {% trans "cancel" %}
+      </a>
+    </div>
+  </form>
+{% endblock %}

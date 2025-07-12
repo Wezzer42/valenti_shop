@@ -6,15 +6,21 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Basket" %}</li>
+    <nav aria-label="breadcrumb" class="mb-4 text-sm text-gray-500">
+        <ol class="flex items-center space-x-2">
+            <li>
+                <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">
+                    {% trans "Home" %}
+                </a>
+            </li>
+            <li>/</li>
+            <li class="text-gray-700">
+                {% trans "Basket" %}
+            </li>
         </ol>
     </nav>
 {% endblock %}
 
-{# Hide mini-basket so we don't have two baskets to keep in sync #}
 {% block mini_basket %}{% endblock %}
 
 {% block headertext %}
@@ -22,13 +28,11 @@
 {% endblock %}
 
 {% block content %}
-    {# Use a partial template so that AJAX can be used to re-render basket #}
     {% include 'oscar/basket/partials/basket_content.html' %}
 {% endblock content %}
 
 {% block onbodyload %}
     {{ block.super }}
-    {# We pass in the URL to send AJAX requests to #}
     var options = {
         'basketURL': '{% url 'basket:summary' %}'
     };

@@ -3,36 +3,38 @@
 {% load i18n %}
 
 {% block title %}
-    {{ page_title }} | {% trans 'Account' %} | {{ block.super }}
+  {{ page_title }} | {% trans 'Account' %} | {{ block.super }}
 {% endblock %}
 
 {% block body_class %}account-profile{% endblock %}
 
 {% block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
-            </li>
-            {% block extra_breadcrumbs %}{% endblock %}
-            <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
-        </ol>
-    </nav>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+    <ol class="list-none p-0 inline-flex space-x-2">
+      <li>
+        <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">{% trans 'Home' %}</a>
+        <span>/</span>
+      </li>
+      <li>
+        <a href="{% url 'customer:summary' %}" class="text-blue-600 hover:underline">{% trans 'Account' %}</a>
+        <span>/</span>
+      </li>
+      {% block extra_breadcrumbs %}{% endblock %}
+      <li class="text-gray-700" aria-current="page">{{ page_title }}</li>
+    </ol>
+  </nav>
 {% endblock %}
 
 {% block headertext %}{{ page_title }}{% endblock %}
 
 {% block column_left %}
-    <ul class="nav nav-pills flex-column">
-        {% block standard_tabs %}
-            {% include 'oscar/customer/partials/standard_tabs.html' %}
-        {% endblock %}
-    </ul>
+  <ul class="space-y-2">
+    {% block standard_tabs %}
+      {% include 'oscar/customer/partials/standard_tabs.html' %}
+    {% endblock %}
+  </ul>
 {% endblock %}
 
 {% block content %}
-    {% block tabcontent %}{% endblock tabcontent %}
+  {% block tabcontent %}{% endblock tabcontent %}
 {% endblock content %}

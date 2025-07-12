@@ -1,48 +1,72 @@
 {% extends "oscar/customer/baseaccountpage.html" %}
 {% load i18n %}
 
-{% block tabcontent %}
+{% block extra_breadcrumbs %}
+    <li class="inline-flex items-center text-sm text-gray-500">
+        <a href="{% url 'customer:address-list' %}" class="hover:underline text-blue-600">{% trans 'Address book' %}</a>
+    </li>
+{% endblock %}
 
-    {% if addresses %}
-        <table class="table table-striped table-bordered">
-            <tbody>
+{% block tabcontent %}
+{% if addresses %}
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
                 <tr>
-                    <th>{% trans 'Address' %}</th>
-                    <th></th>
+                    <th class="text-left text-sm font-medium text-gray-700 px-4 py-2">{% trans 'Address' %}</th>
+                    <th class="text-right px-4 py-2"></th>
                 </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
                 {% for address in addresses %}
                     <tr>
-                        <td>
-                            {% if address.is_default_for_shipping %}
-                                <span class="badge badge-success">{% trans 'Default shipping address' %}</span>
-                            {% endif %}
-                            {% if address.is_default_for_billing %}
-                                <span class="badge badge-info">{% trans 'Default billing address' %}</span>
-                            {% endif %}
-                            <address>
-                                {% for field in address.active_address_fields %}
-                                    {{ field }}<br/>
-                                {% endfor %}
-                            </address>
+                        <td class="align-top px-4 py-4 text-sm text-gray-800">
+                            <div class="space-y-1">
+                                {% if address.is_default_for_shipping %}
+                                    <span class="inline-block text-xs font-medium bg-green-100 text-green-800 px-2 py-1 rounded">
+                                        {% trans 'Default shipping address' %}
+                                    </span>
+                                {% endif %}
+                                {% if address.is_default_for_billing %}
+                                    <span class="inline-block text-xs font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                                        {% trans 'Default billing address' %}
+                                    </span>
+                                {% endif %}
+                                <address class="not-italic text-sm text-gray-600">
+                                    {% for field in address.active_address_fields %}
+                                        {{ field }}<br/>
+                                    {% endfor %}
+                                </address>
+                            </div>
                         </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-secondary" href="{% url 'customer:address-detail' pk=address.id %}">{% trans 'Edit' %}</a>
-                                <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
-                                <div class="dropdown-menu">
-                                    <a href="{% url 'customer:address-delete' pk=address.id %}" class="dropdown-item">
-                                        {% trans 'Delete' %}
-                                    </a>
-                                    {% if address.country.is_shipping_country and not address.is_default_for_shipping %}
-                                        <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_shipping' %}" class="dropdown-item">
-                                            {% trans 'Set as default shipping address' %}
-                                        </a>
-                                    {% endif %}
-                                    {% if not address.is_default_for_billing %}
-                                        <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_billing' %}" class="dropdown-item">
-                                            {% trans 'Set as default billing address' %}
-                                        </a>
-                                    {% endif %}
+                        <td class="align-top px-4 py-4 text-right whitespace-nowrap text-sm">
+                            <div class="relative inline-block text-left">
+                                <a href="{% url 'customer:address-detail' pk=address.id %}" class="inline-flex items-center px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded text-sm font-medium">
+                                    {% trans 'Edit' %}
+                                </a>
+                                <div class="inline-block relative">
+                                    <button class="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 focus:outline-none" type="button" id="menu-button-{{ address.id }}" aria-expanded="true" aria-haspopup="true">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12h.01M12 12h.01M18 12h.01"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 hidden group-hover:block" role="menu" aria-orientation="vertical" aria-labelledby="menu-button-{{ address.id }}">
+                                        <div class="py-1" role="none">
+                                            <a href="{% url 'customer:address-delete' pk=address.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                                {% trans 'Delete' %}
+                                            </a>
+                                            {% if address.country.is_shipping_country and not address.is_default_for_shipping %}
+                                                <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_shipping' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                                    {% trans 'Set as default shipping address' %}
+                                                </a>
+                                            {% endif %}
+                                            {% if not address.is_default_for_billing %}
+                                                <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_billing' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                                    {% trans 'Set as default billing address' %}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -50,11 +74,15 @@
                 {% endfor %}
             </tbody>
         </table>
-        {% include "oscar/partials/pagination.html" %}
-    {% else %}
-        <p>{% trans 'There are no addresses in your address book.' %}</p>
-    {% endif %}
-    <p>
-        <a href="{% url 'customer:address-create' %}" class="btn btn-primary">{% trans 'Add a new address' %}</a>
-    </p>
+    </div>
+    {% include "oscar/partials/pagination.html" %}
+{% else %}
+    <p class="text-gray-600">{% trans 'There are no addresses in your address book.' %}</p>
+{% endif %}
+
+<div class="mt-6">
+    <a href="{% url 'customer:address-create' %}" class="inline-block px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
+        {% trans 'Add a new address' %}
+    </a>
+</div>
 {% endblock tabcontent %}

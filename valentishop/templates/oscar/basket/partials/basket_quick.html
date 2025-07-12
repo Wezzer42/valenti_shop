@@ -4,41 +4,56 @@
 {% load image_tags %}
 {% load i18n %}
 
-<ul class="basket-mini-item list-unstyled">
+<ul class="space-y-4">
     {% if request.basket.num_lines %}
         {% for line in request.basket.all_lines %}
             <li>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="image_container w-100">
-                            {% with image=line.product.primary_image %}
-                                {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
-                                <a href="{{ line.product.get_absolute_url }}">
-                                    <img src="{{ thumb.url }}" alt="{{ line.product.get_title }}" class="img-thumbnail w-auto mx-auto my-0">
-                                </a>
-                            {% endwith %}
-                        </div>
+                <div class="grid grid-cols-12 gap-4 items-center">
+                    <div class="col-span-3">
+                        {% with image=line.product.primary_image %}
+                            {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
+                            <a href="{{ line.product.get_absolute_url }}">
+                                <img src="{{ thumb.url }}" alt="{{ line.product.get_title }}" class="rounded border w-20 h-auto mx-auto">
+                            </a>
+                        {% endwith %}
                     </div>
-                    <div class="col-sm-5">
-                        <p><strong><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></strong></p>
+                    <div class="col-span-5">
+                        <p class="text-sm font-semibold">
+                            <a href="{{ line.product.get_absolute_url }}" class="text-blue-600 hover:underline">{{ line.description }}</a>
+                        </p>
                     </div>
-                    <div class="col-sm-1 text-center"><strong>{% trans "Qty" %}</strong> {{ line.quantity }}</div>
-                    <div class="col-sm-3 price_color text-right">{{ line.unit_price_excl_tax|currency:request.basket.currency }}</div>
+                    <div class="col-span-2 text-center text-sm">
+                        <strong>{% trans "Qty" %}</strong> {{ line.quantity }}
+                    </div>
+                    <div class="col-span-2 text-right text-sm text-gray-800">
+                        {{ line.unit_price_excl_tax|currency:request.basket.currency }}
+                    </div>
                 </div>
             </li>
         {% endfor %}
-        <li class="form-group form-actions">
-            <p class="text-right">
+
+        <li class="pt-2 border-t">
+            <p class="text-right text-sm text-gray-600 mb-2">
                 {% if request.basket.is_tax_known %}
                     <small>{% trans "Total:" %} {{ request.basket.total_incl_tax|currency:request.basket.currency }}</small>
                 {% else %}
                     <small>{% trans "Total:" %} {{ request.basket.total_excl_tax|currency:request.basket.currency }}</small>
                 {% endif %}
             </p>
-            <a href="{% url 'basket:summary' %}" class="btn btn-info btn-sm">{% trans "View basket" %}</a>
-            <a href="{% url 'checkout:index' %}" class="btn btn-primary btn-sm float-right"><i class="fas fa-shopping-cart"></i> {% trans "Checkout" %}</a>
+            <div class="flex justify-between items-center text-sm">
+                <a href="{% url 'basket:summary' %}" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-3 py-1 rounded">
+                    {% trans "View basket" %}
+                </a>
+                <a href="{% url 'checkout:index' %}" class="bg-green-600 text-white hover:bg-green-700 px-3 py-1 rounded inline-flex items-center">
+                    <!-- Heroicon: Shopping Cart -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h14l1-5H8L7 3H5m2 10v6a1 1 0 001 1h10a1 1 0 001-1v-6M7 21h.01M17 21h.01" />
+                    </svg>
+                    {% trans "Checkout" %}
+                </a>
+            </div>
         </li>
     {% else %}
-        <li><p>{% trans "Your basket is empty." %}</p></li>
+        <li><p class="text-sm text-gray-600">{% trans "Your basket is empty." %}</p></li>
     {% endif %}
 </ul>

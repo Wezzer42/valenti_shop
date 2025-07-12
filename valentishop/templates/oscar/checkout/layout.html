@@ -4,45 +4,48 @@
 
 {% block layout %}
 
-    <header class="header container">
-        <div class="page_inner">
-            <div class="row">
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-6">
                 {% include "oscar/partials/brand.html" %}
-            </div><!-- /row -->
+            </div>
         </div>
         {% block checkout_nav %}{% endblock %}
-    </header><!-- /header -->
+    </header>
 
-    <div class="container page">
-       <div class="page_inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-8">
             {% include 'oscar/partials/alert_messages.html' %}
 
-            <div class="sub-header">
-                <h1>{% block checkout_title %}{% endblock %}</h1>
+            <div class="mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">{% block checkout_title %}{% endblock %}</h1>
             </div>
 
-            <!-- The main nav on checkout pages contain links to modal flatpages -->
             {% block modal %}
                 {% load flatpages %}
                 {% get_flatpages '/order/' as flatpages %}
                 {% for page in flatpages %}
-                <div id="{{ page.title|slugify }}" class="modal hide fade">
-                    <div class="modal-header">
-                        <a class="close" data-dismiss="modal">×</a>
-                        <h3>{{ page.title }}</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="large-content">
-                            {{ page.content|safe }}
+                    <div id="{{ page.title|slugify }}" class="fixed z-50 inset-0 overflow-y-auto hidden">
+                        <div class="flex items-center justify-center min-h-screen px-4">
+                            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
+                                <div class="flex justify-between items-center border-b pb-4 mb-4">
+                                    <h3 class="text-xl font-medium text-gray-900">{{ page.title }}</h3>
+                                    <button class="text-gray-400 hover:text-gray-600" onclick="this.closest('div[id]').classList.add('hidden')">&times;</button>
+                                </div>
+                                <div class="prose max-w-none">
+                                    {{ page.content|safe }}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             {% endblock %}
 
             {% block content %}{% endblock %}
 
-        </div><!-- /page_inner -->
+        </div>
     </div>
+
     {% include "oscar/partials/footer_checkout.html" %}
+
 {% endblock %}

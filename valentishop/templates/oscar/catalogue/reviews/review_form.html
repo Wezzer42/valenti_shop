@@ -1,0 +1,73 @@
+{% extends "oscar/catalogue/detail.html" %}
+{% load i18n %}
+{% load reviews_tags %}
+
+{% block product_review %}
+<div id="addreview" class="max-w-3xl mx-auto bg-gray-50 border border-gray-200 rounded-lg p-6 mt-10">
+  <form id="add_review_form" method="post" action="#addreview" class="space-y-6">
+    <fieldset>
+      <legend class="text-lg font-semibold text-gray-800 mb-4">{% trans "Leave a product review" %}</legend>
+      {% csrf_token %}
+
+      {% include 'oscar/partials/form_field.html' with field=form.title %}
+
+      <!-- Score (звёзды) -->
+      <div class="form-group space-y-1 {% if form.score.errors %}text-red-600{% endif %}">
+        <label for="{{ form.score.auto_id }}" class="block font-medium text-gray-700">
+          {{ form.score.label|safe }}
+        </label>
+        <div class="flex items-center gap-2">
+          {{ form.score }}
+          <div class="flex space-x-0.5 text-yellow-400">
+            {% for i in "12345"|make_list %}
+              {% if forloop.counter <= form.score.value|default:0 %}
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.262 3.885h4.084c.97 0 1.372 1.24.588 1.81l-3.306 2.404 
+                  1.263 3.885c.3.922-.755 1.688-1.538 1.118L10 13.347l-3.303 2.402c-.783.57-1.838-.196-1.539-1.118l1.263-3.885
+                  -3.306-2.404c-.784-.57-.382-1.81.588-1.81h4.084L9.049 2.927z" />
+                </svg>
+              {% else %}
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.36 7.25h7.631c.97 0 1.372 1.24.588 1.81l-6.18 4.494 
+                        2.36 7.25c.3.922-.755 1.688-1.538 1.118L12 18.347l-6.18 4.494c-.783.57-1.838-.196-1.539-1.118l2.36-7.25
+                        -6.18-4.494c-.784-.57-.382-1.81.588-1.81h7.631l2.36-7.25z" />
+                </svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        {% for error in form.score.errors %}
+          <p class="text-sm text-red-600 mt-1 flex items-center gap-1">
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            {{ error }}
+          </p>
+        {% endfor %}
+      </div>
+
+      {% include 'oscar/partials/form_field.html' with field=form.body %}
+      {% if form.name %}
+        {% include 'oscar/partials/form_field.html' with field=form.name %}
+      {% endif %}
+      {% if form.email %}
+        {% include '/partials/form_field.html' with field=form.email %}
+      {% endif %}
+
+      <div class="pt-4 flex items-center gap-4">
+        <button type="submit"
+                class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
+                data-loading-text="{% trans 'Saving...' %}">
+          {% trans "Save review" %}
+        </button>
+        <a href="{{ product.get_absolute_url }}" class="text-sm text-gray-600 hover:underline">
+          {% trans "cancel" %}
+        </a>
+      </div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

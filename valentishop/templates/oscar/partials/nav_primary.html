@@ -1,76 +1,79 @@
-{% load i18n %}
+{% load currency_filters %}
 {% load category_tags %}
+{% load i18n %}
 
-{% block navbar_collapse %}
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {% block nav %}
-            <ul class="navbar-nav me-auto">
-                {% block nav_items %}
-                    <!-- Триггер для модального окна -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#catalogueModal">
-                            {% trans "Browse store" %}
-                        </a>
-                    </li>
-                {% endblock %}
-            </ul>
-        {% endblock %}
-    </div>
-{% endblock %}
+<nav x-data="{ openMenu: false, openCatalogue: false }" class="bg-gray-900 text-white shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Бренд -->
+      <div class="flex items-center space-x-4">
+        <a href="/" class="text-xl font-bold text-white"></a>
+        <span class="text-sm text-gray-400 hidden sm:inline">{{ shop_tagline }}</span>
+      </div>
 
+      <!-- Поиск -->
+      <form method="GET" action="{% url 'search:search' %}" class="flex items-center space-x-2 w-full max-w-md">
+        <input
+          type="text"
+          name="q"
+          id="id_q"
+          placeholder="{% trans 'Search' %}"
+          class="px-3 py-1.5 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 text-sm w-full text-black"
+        >
+        <button type="submit" class="bg-blue-600 px-3 py-1.5 rounded-md text-white hover:bg-blue-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+        </button>
+      </form>
 
-<!-- Модальное окно для каталога -->
-<div class="modal fade" id="catalogueModal" tabindex="-1" aria-labelledby="catalogueModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="catalogueModalLabel">{% trans "Catalogue" %}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <!-- Модальное тело -->
-            <div class="modal-body">
-            {% category_tree depth=1 as root_categories %}
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                {% for category in root_categories %}
-                    <div class="col">
-                        <a href="{{ category.get_absolute_url }}" class="text-decoration-none text-dark font-weight-bold">
-                        {{ category.name }}
-                        </a>
-
-                        <!-- Второй уровень категорий -->
-                        {% category_tree depth=1 parent=category.category as second_level_categories %}
-                        {% if second_level_categories %}
-                            <ul class="list-unstyled mt-2">
-                                {% for sub_category in second_level_categories %}
-                                    <li>
-                                        <a href="{{ sub_category.get_absolute_url }}" class="text-decoration-none text-dark">
-                                        {{ sub_category.name }}
-                                        </a>
-                                        <!-- Третий уровень категорий -->
-                                        {% category_tree depth=1 parent=sub_category.category as third_level_categories %}
-                                        {% if third_level_categories %}
-                                            <ul class="list-unstyled ms-3">
-                                                {% for third_category in third_level_categories %}
-                                                    <li>    
-                                                        <a href="{{ third_category.get_absolute_url }}" class="text-decoration-none text-dark">
-                                                            {{ third_category.name }}
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
+      <!-- Десктоп меню -->
+      <div class="hidden md:flex items-center space-x-4 text-sm relative">
+        <!-- Каталог -->
+        <div class="relative">
+          <button @click="openCatalogue = !openCatalogue" class="hover:text-blue-400 flex items-center">
+            {% trans "Catalogue" %}
+            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div x-show="openCatalogue" x-cloak @click.outside="openCatalogue = false" class="absolute mt-2 bg-white text-black rounded shadow-lg w-56 z-50">
+            <a href="{% url 'catalogue:index' %}" class="block px-4 py-2 hover:bg-gray-100">{% trans "All products" %}</a>
+            {% category_tree depth=1 as tree_categories %}
+            {% if tree_categories %}
+              <div class="border-t border-gray-200 my-2"></div>
+              {% for tree_category in tree_categories %}
+                <a href="{{ tree_category.get_absolute_url }}" class="block px-4 py-2 hover:bg-gray-100">{{ tree_category.name }}</a>
+              {% endfor %}
+            {% endif %}
+            <div class="border-t border-gray-200 my-2"></div>
+            {% block nav_dropdown_extra_items %}
+              <a class="block px-4 py-2 hover:bg-gray-100" href="{% url 'offer:list' %}">{% trans "Offers" %}</a>
+            {% endblock %}
+          </div>
         </div>
+
+        <a href="{% url 'basket:summary' %}" class="hover:text-blue-400">{% trans "Basket" %}</a>
+        <a href="{% url 'customer:summary' %}" class="hover:text-blue-400">{% trans "Account" %}</a>
+      </div>
+
+      <!-- Тогглер мобилка -->
+      <div class="md:hidden">
+        <button @click="openMenu = !openMenu" class="focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
-</div>
-    {% block extrascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-{% endblock %}
+
+    <!-- Мобильное меню -->
+    <transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0 -translate-y-2" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-150 ease-in" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 -translate-y-2">
+      <div x-show="openMenu" x-cloak class="mt-4 md:hidden space-y-2">
+        <a href="{% url 'catalogue:index' %}" class="block px-4 py-2 hover:bg-gray-800">{% trans "Browse store" %}</a>
+        <a href="{% url 'basket:summary' %}" class="block px-4 py-2 hover:bg-gray-800">{% trans "Basket" %}</a>
+        <a href="{% url 'customer:summary' %}" class="block px-4 py-2 hover:bg-gray-800">{% trans "Account" %}</a>
+      </div>
+    </transition>
+  </div>
+</nav>

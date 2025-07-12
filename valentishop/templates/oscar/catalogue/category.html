@@ -1,0 +1,64 @@
+{% extends "oscar/catalogue/browse.html" %}
+{% load i18n %}
+
+{% block title %}
+  {{ category.get_meta_title }} | {{ block.super }}
+{% endblock %}
+
+{% block description %}
+  {{ category.get_meta_description }}
+{% endblock %}
+
+{% block header %}
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    {% if user.is_staff %}
+      <a href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"
+         class="inline-flex items-center text-sm text-blue-600 hover:underline">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.232 5.232l3.536 3.536M9 11l6.586-6.586a2 2 0 112.828 2.828L11.828 13.828a4 4 0 01-2.121 1.06l-4.95 1.414a1 1 0 01-1.213-1.213l1.414-4.95a4 4 0 011.06-2.121z"/>
+        </svg>
+        {% trans "Edit this category" %}
+      </a>
+    {% endif %}
+    <h1 class="text-2xl font-bold text-gray-900">{% block headertext %}{{ category.name }}{% endblock %}</h1>
+  </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+  <ol class="flex flex-wrap items-center space-x-2">
+    <li>
+      <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">{% trans "Home" %}</a>
+    </li>
+    {% for cat in category.get_ancestors %}
+      <li>/</li>
+      <li>
+        <a href="{{ cat.get_absolute_url }}" class="text-blue-600 hover:underline">{{ cat.name }}</a>
+      </li>
+    {% endfor %}
+    <li>/</li>
+    <li class="text-gray-700">{{ category.name }}</li>
+  </ol>
+</nav>
+{% endblock breadcrumbs %}
+
+{% block content %}
+  {% if category.description or category.image %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      {% if category.description %}
+        <div class="md:col-span-2 text-gray-700 text-sm leading-relaxed">
+          {{ category.description|safe }}
+        </div>
+      {% endif %}
+      {% if category.image %}
+        <div class="md:col-span-1">
+          <img src="{{ category.image.url }}"
+               alt="{{ category.name }}"
+               class="rounded-md shadow object-cover max-w-full h-auto" />
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

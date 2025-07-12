@@ -1,0 +1,84 @@
+{% load reviews_tags %}
+{% load i18n %}
+
+<article class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm space-y-4">
+
+  <!-- Заголовок и звёзды -->
+  <header>
+    <div class="flex items-center justify-between">
+      <div class="flex space-x-0.5 text-yellow-400">
+        {% for i in "12345"|make_list %}
+          {% if forloop.counter <= review.score %}
+            <!-- Полная звезда -->
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.262 3.885h4.084c.97 0 1.372 1.24.588 1.81l-3.306 2.404 1.263 3.885c.3.922-.755 1.688-1.538 1.118L10 13.347l-3.303 2.402c-.783.57-1.838-.196-1.539-1.118l1.263-3.885-3.306-2.404c-.784-.57-.382-1.81.588-1.81h4.084L9.049 2.927z" />
+            </svg>
+          {% else %}
+            <!-- Пустая звезда -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.36 7.25h7.631c.97 0 1.372 1.24.588 1.81l-6.18 4.494 2.36 7.25c.3.922-.755 1.688-1.538 1.118L12 18.347l-6.18 4.494c-.783.57-1.838-.196-1.539-1.118l2.36-7.25-6.18-4.494c-.784-.57-.382-1.81.588-1.81h7.631l2.36-7.25z" />
+            </svg>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <a href="{{ review.get_absolute_url }}" class="text-blue-600 text-sm hover:underline">
+        {{ review.title }}
+      </a>
+    </div>
+  </header>
+
+  <!-- Текст отзыва -->
+  <p class="text-gray-800">{{ review.body|striptags }}</p>
+
+  <!-- Автор -->
+  <p class="text-sm text-gray-500">
+    {% if review.user == user %}
+      {% blocktrans with review_date=review.date_created %}Reviewed by you on {{ review_date }}{% endblocktrans %}
+    {% else %}
+      {% blocktrans with name=review.reviewer_name review_date=review.date_created %}
+        Reviewed by <strong>{{ name }}</strong> on {{ review_date }}
+      {% endblocktrans %}
+    {% endif %}
+    |
+    <a href="{% url 'catalogue:reviews-detail' product_slug=product.slug product_pk=product.pk pk=review.pk %}"
+       class="text-blue-500 hover:underline">{% trans "Permalink" %}</a>
+  </p>
+
+  <!-- Голосование -->
+  {% if review|may_vote:user %}
+    <div class="space-y-1">
+      <p class="text-sm text-gray-700">{% trans "Is this review helpful?" %}</p>
+      <div class="flex gap-2">
+        <form action="{% url 'catalogue:reviews-vote' product_slug=product.slug product_pk=product.pk pk=review.pk %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="delta" value="1" />
+          <button type="submit" class="px-3 py-1 text-sm rounded bg-green-600 text-white hover:bg-green-700">
+            {% trans "Yes" %}
+          </button>
+        </form>
+        <form action="{% url 'catalogue:reviews-vote' product_slug=product.slug product_pk=product.pk pk=review.pk %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="delta" value="-1" />
+          <button type="submit" class="px-3 py-1 text-sm rounded bg-red-600 text-white hover:bg-red-700">
+            {% trans "No" %}
+          </button>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Результат голосования -->
+  <p class="text-sm text-gray-600">
+    {% if review.has_votes %}
+      {% blocktrans with num_up_votes=review.num_up_votes count num_votes=review.total_votes %}
+        <strong>{{ num_up_votes }}</strong> of {{ num_votes }} customer found this useful
+      {% plural %}
+        <strong>{{ num_up_votes }}</strong> of {{ num_votes }} customers found this useful
+      {% endblocktrans %}
+    {% else %}
+      {% trans "This review has no votes." %}
+    {% endif %}
+  </p>
+</article>

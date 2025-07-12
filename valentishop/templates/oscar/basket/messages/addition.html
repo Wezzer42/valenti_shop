@@ -2,11 +2,10 @@
 
 {% if quantity == 1 %}
     {% blocktrans with title=product.get_title %}
-    <strong>{{ title }}</strong> has been added to your basket.
+        <span class="text-sm text-gray-800"><strong class="font-medium">{{ title }}</strong> has been added to your basket.</span>
     {% endblocktrans %}
 {% else %}
     {% blocktrans with title=product.get_title quantity=quantity %}
-    <strong>{{ quantity }}</strong> copies of <strong>{{ title }}</strong>
-    have been added to your basket.
+        <span class="text-sm text-gray-800"><strong class="font-medium">{{ quantity }}</strong> copies of <strong class="font-medium">{{ title }}</strong> have been added to your basket.</span>
     {% endblocktrans %}
 {% endif %}

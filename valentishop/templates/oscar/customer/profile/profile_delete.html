@@ -1,21 +1,27 @@
 {% extends "oscar/customer/baseaccountpage.html" %}
+{% load currency_filters %}
 {% load i18n %}
 
 {% block tabcontent %}
-    <p>{% trans "Please confirm your password to delete your profile." %}</p>
-    <form id="delete_profile_form" method="post">
-        {% csrf_token %}
-        {% include "oscar/partials/form_fields.html" with style='horizontal' %}
-        <div class="alert alert-warning">
-            <h3>{% trans "Warning" %}</h3>
-            {% blocktrans %}
-                This will delete all information about you from the site.  Deleting your profile cannot be
-                undone.
-            {% endblocktrans %}
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-danger" type="submit" data-loading-text="{% trans 'Deleting...' %}">{% trans "Delete" %}</button>
-            {% trans "or" %} <a href="{% url "customer:profile-view" %}">{% trans "cancel" %}</a>.
-        </div>
-    </form>
+<p class="text-gray-700 mb-4">{% trans "Please confirm your password to delete your profile." %}</p>
+<form id="delete_profile_form" method="post" class="space-y-6">
+  {% csrf_token %}
+  {% include "oscar/partials/form_fields.html" with style='horizontal' %}
+  <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded">
+    <h3 class="text-lg font-semibold mb-2">{% trans "Warning" %}</h3>
+    <p>
+      {% blocktrans %}
+        This will delete all information about you from the site. Deleting your profile cannot be undone.
+      {% endblocktrans %}
+    </p>
+  </div>
+  <div class="pt-2">
+    <button class="inline-flex items-center px-5 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md" type="submit" data-loading-text="{% trans 'Deleting...' %}">
+      {% trans "Delete" %}
+    </button>
+    <a href="{% url "customer:profile-view" %}" class="ml-4 text-sm text-gray-600 hover:underline">
+      {% trans "cancel" %}
+    </a>
+  </div>
+</form>
 {% endblock tabcontent %}

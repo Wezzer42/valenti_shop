@@ -1,17 +1,21 @@
 {% extends "oscar/layout.html" %}
 {% load i18n %}
 
-{% block layout %}
-{% include "oscar/partials/nav_accounts.html" %}
-
-<div class="container">
-    <div class="jumbotron">
-        <h1>{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
-        {% block error_message %}{% endblock %}
-        <p>
-            <a class="btn btn-primary btn-lg" onclick="javascript:history.go(-1);">{% trans 'Return to previous page' %}</a>
-            <a class="btn btn-primary btn-lg" href="{{ homepage_url }}">{% trans "Go to homepage" %}</a>
-        </p>
+{% block content_wrapper %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <div class="bg-white shadow rounded-lg p-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
+    <div class="text-gray-600 text-lg mb-6">
+      {% block error_message %}{% endblock %}
     </div>
+    <div class="flex justify-center space-x-4">
+      <a onclick="javascript:history.go(-1);" class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-3 rounded-md cursor-pointer">
+        {% trans 'Return to previous page' %}
+      </a>
+      <a href="{{ homepage_url }}" class="inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-semibold px-6 py-3 rounded-md">
+        {% trans 'Go to homepage' %}
+      </a>
+    </div>
+  </div>
 </div>
 {% endblock %}

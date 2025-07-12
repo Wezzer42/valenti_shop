@@ -1,9 +1,30 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Category
+from modeltranslation.translator import register, TranslationOptions
+from apps.catalogue.models import (
+    ProductAttribute, ProductAttributeValue,
+    Option, AttributeOption, AttributeOptionGroup, Category
+)
 
+@register(ProductAttribute)
+class ProductAttributeTranslationOptions(TranslationOptions):
+    fields = ('name',)
 
-class NewsTranslationOptions(TranslationOptions):
-    fields = ('name', 'description')
+@register(ProductAttributeValue)
+class ProductAttributeValueTranslationOptions(TranslationOptions):
+    fields = ('value_text',)
 
+@register(Option)
+class OptionTranslationOptions(TranslationOptions):
+    fields = ('name',)
 
-translator.register(Category, NewsTranslationOptions)
+@register(AttributeOption)
+class AttributeOptionTranslationOptions(TranslationOptions):
+    fields = ('option',)
+
+@register(AttributeOptionGroup)
+class AttributeOptionGroupTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+@register(Category)
+class CategoryTranslationOptions(TranslationOptions):
+    fields = ('name',)

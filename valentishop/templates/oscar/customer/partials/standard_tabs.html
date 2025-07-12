@@ -1,26 +1,49 @@
 {% load i18n %}
 {% load display_tags %}
 
-<li class="nav-item">
-    <a href="{% url 'customer:profile-view' %}" class="nav-link{% if active_tab == 'profile' %} active{% endif %}">{% trans "Profile" %}</a>
-</li>
-<li class="nav-item">
-    <a href="{% url 'customer:order-list' %}" class="nav-link{% if active_tab == 'orders' %} active{% endif %}">{% trans "Order History" %}</a>
-</li>
-<li class="nav-item">
-    <a href="{% url 'customer:address-list' %}" class="nav-link{% if active_tab == 'addresses' %} active{% endif %}">{% trans "Address Book" %}</a>
-</li>
-<li class="nav-item">
-    <a href="{% url 'customer:email-list' %}" class="nav-link{% if active_tab == 'emails' %} active{% endif %}">{% trans "Email History" %}</a>
-</li>
-<li class="nav-item">
-    <a href="{% url 'customer:alerts-list' %}" class="nav-link{% if active_tab == 'alerts' %} active{% endif %}">{% trans "Product Alerts" %}</a>
-</li>
-<li class="nav-item">
-    <a href="{% url 'customer:notifications-inbox' %}" class="nav-link{% if active_tab == 'notifications' %} active{% endif %}">{% trans "Notifications" %}</a>
-</li>
-{% iffeature 'wishlists' %}
-    <li class="nav-item">
-        <a href="{% url 'customer:wishlists-list' %}" class="nav-link{% if active_tab == 'wishlists' %} active{% endif %}">{% trans "Wish Lists" %}</a>
+<ul class="flex flex-col gap-2 text-sm">
+  <li>
+    <a href="{% url 'customer:profile-view' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'profile' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Profile" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'customer:order-list' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'orders' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Order History" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'customer:address-list' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'addresses' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Address Book" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'customer:email-list' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'emails' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Email History" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'customer:alerts-list' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'alerts' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Product Alerts" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'customer:notifications-inbox' %}"
+       class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'notifications' %}bg-gray-200 font-semibold{% endif %}">
+      {% trans "Notifications" %}
+    </a>
+  </li>
+  {% iffeature 'wishlists' %}
+    <li>
+      <a href="{% url 'customer:wishlists-list' %}"
+         class="block px-4 py-2 rounded hover:bg-gray-100 {% if active_tab == 'wishlists' %}bg-gray-200 font-semibold{% endif %}">
+        {% trans "Wish Lists" %}
+      </a>
     </li>
-{% endiffeature %}
+  {% endiffeature %}
+</ul>

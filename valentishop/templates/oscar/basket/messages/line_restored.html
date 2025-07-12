@@ -1,5 +1,7 @@
 {% load i18n %}
 
 {% blocktrans with title=line.product.get_title %}
-<strong>{{ title }}</strong> has been moved back to your basket.
+<span class="text-sm text-gray-800">
+    <strong class="font-medium">{{ title }}</strong> has been moved back to your basket.
+</span>
 {% endblocktrans %}

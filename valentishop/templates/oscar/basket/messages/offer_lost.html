@@ -1,6 +1,8 @@
 {% load i18n %}
 
 {% blocktrans with name=offer.name %}
-Your basket no longer qualifies for the
-<strong>{{ name }}</strong> offer.
+<span class="text-sm text-gray-800">
+    Your basket no longer qualifies for the
+    <strong class="font-medium">{{ name }}</strong> offer.
+</span>
 {% endblocktrans %}

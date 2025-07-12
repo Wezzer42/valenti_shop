@@ -1,0 +1,45 @@
+{% load reviews_tags %}
+{% load i18n %}
+
+<p class="flex items-center flex-wrap gap-2 text-sm text-gray-700">
+
+  {% if product.rating != None %}
+    <!-- Рейтинг звёздами -->
+    <span class="flex space-x-0.5 text-yellow-400">
+      {% for i in "12345"|make_list %}
+        {% if forloop.counter <= product.rating %}
+          <!-- Заполненная звезда -->
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.262 3.885h4.084c.97 0 1.372 1.24.588 1.81l-3.306 2.404 1.263 3.885c.3.922-.755 1.688-1.538 1.118L10 13.347l-3.303 2.402c-.783.57-1.838-.196-1.539-1.118l1.263-3.885-3.306-2.404c-.784-.57-.382-1.81.588-1.81h4.084L9.049 2.927z" />
+          </svg>
+        {% else %}
+          <!-- Пустая звезда -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.36 7.25h7.631c.97 0 1.372 1.24.588 1.81l-6.18 4.494 2.36 7.25c.3.922-.755 1.688-1.538 1.118L12 18.347l-6.18 4.494c-.783.57-1.838-.196-1.539-1.118l2.36-7.25-6.18-4.494c-.784-.57-.382-1.81.588-1.81h7.631l2.36-7.25z" />
+          </svg>
+        {% endif %}
+      {% endfor %}
+    </span>
+
+    <!-- Кол-во отзывов -->
+    <small>
+      <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}"
+         class="text-blue-600 hover:underline ml-2">
+        {% blocktrans count product.num_approved_reviews as num_reviews %}
+          {{ num_reviews }} customer review
+        {% plural %}
+          {{ num_reviews }} customer reviews
+        {% endblocktrans %}
+      </a>
+    </small>
+  {% endif %}
+
+  {% if product|is_review_permitted:user %}
+    <a id="write_review"
+       href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview"
+       class="inline-block bg-green-600 text-white text-xs px-3 py-1.5 rounded hover:bg-green-700 transition">
+      {% trans "Write a review" %}
+    </a>
+  {% endif %}
+</p>

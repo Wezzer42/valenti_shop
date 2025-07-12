@@ -1,64 +1,91 @@
+{% extends "oscar/layout.html" %}
 {% load i18n %}
+{% load category_tags %}
 
-<nav class="navbar navbar-static-top nav-checkout navbar-expand-md navbar-dark bg-dark">
-    <ul class="navbar-nav mr-auto">
-    {% spaceless %}
-        <li class="nav-item step1 {% if step == 1 %}active{% else %}{% if step == 2 %}previous{% else %}{% if step > 1 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-            {% if step == 2 or step == 3 or step == 4 %}
-                <a href="{% url 'checkout:shipping-address' %}" class="nav-link">
-                    <i class="fas fa-chevron-right"></i>
-                    <span>
-                        {% trans "1. Shipping address" %}
-                    </span>
-                </a>
-            {% else %}
-                <span class="navbar-text">
-                    {%  trans "1. Shipping address" %}
-                </span>
-            {% endif %}
-        </li>
+{% block layout %}
 
-        <li class="nav-item step2 {% if step == 2 %}active{% else %}{% if step == 3 %}previous{% else %}{% if step > 2 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-            {% if step == 3 or step == 4 %}
-                <a href="{% url 'checkout:shipping-method' %}" class="nav-link">
-                    <i class="fas fa-chevron-right"></i>
-                    <span>
-                        {% trans "2. Shipping method" %}
-                    </span>
-                </a>
-            {% else %}
-                <span class="navbar-text">
-                    {%  trans "2. Shipping method" %}
-                </span>
-            {% endif %}
-        </li>
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-6">
+                {% include "oscar/partials/brand.html" %}
+            </div>
+        </div>
+        {% block checkout_nav %}
+        <nav class="bg-gray-100 border-b border-gray-300">
+            <ul class="flex flex-wrap text-sm font-medium text-gray-600 py-3 px-4 space-x-4 overflow-x-auto">
+                {% spaceless %}
+                <li class="{% if step == 1 %}text-blue-600 font-semibold{% elif step > 1 %}text-gray-900{% else %}text-gray-400{% endif %}">
+                    {% if step > 1 %}
+                        <a href="{% url 'checkout:shipping-address' %}" class="hover:underline">
+                            <span>1. {% trans "Shipping address" %}</span>
+                        </a>
+                    {% else %}
+                        <span>1. {% trans "Shipping address" %}</span>
+                    {% endif %}
+                </li>
+                <li class="{% if step == 2 %}text-blue-600 font-semibold{% elif step > 2 %}text-gray-900{% else %}text-gray-400{% endif %}">
+                    {% if step > 2 %}
+                        <a href="{% url 'checkout:shipping-method' %}" class="hover:underline">
+                            <span>2. {% trans "Shipping method" %}</span>
+                        </a>
+                    {% else %}
+                        <span>2. {% trans "Shipping method" %}</span>
+                    {% endif %}
+                </li>
+                <li class="{% if step == 3 %}text-blue-600 font-semibold{% elif step > 3 %}text-gray-900{% else %}text-gray-400{% endif %}">
+                    {% if step > 3 %}
+                        <a href="{% url 'checkout:payment-details' %}" class="hover:underline">
+                            <span>3. {% trans "Payment" %}</span>
+                        </a>
+                    {% else %}
+                        <span>3. {% trans "Payment" %}</span>
+                    {% endif %}
+                </li>
+                <li class="{% if step == 4 %}text-blue-600 font-semibold{% else %}text-gray-400{% endif %}">
+                    <span>4. {% trans "Preview" %}</span>
+                </li>
+                <li class="{% if step == 5 %}text-blue-600 font-semibold{% else %}text-gray-400{% endif %}">
+                    <span>5. {% trans "Confirmation" %}</span>
+                </li>
+                {% endspaceless %}
+            </ul>
+        </nav>
+        {% endblock %}
+    </header>
 
-        <li class="nav-item step3 {% if step == 3 %}active{% else %}{% if step == 4 %}previous{% else %}{% if step > 3 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
-            {% if step == 4 %}
-                <a href="{% url 'checkout:payment-details' %}" class="nav-link">
-                    <i class="fas fa-chevron-right"></i>
-                    <span>
-                        {% trans "3. Payment" %}
-                    </span>
-                </a>
-            {% else %}
-                <span class="navbar-text">
-                    {%  trans "3. Payment" %}
-                </span>
-            {% endif %}
-        </li>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-8">
+            {% include 'oscar/partials/alert_messages.html' %}
 
-        <li class="nav-item step4 {% if step == 4 %}active{% else %}disabled{% endif %} ">
-            <span class="navbar-text">
-                {% trans "4. Preview" %}
-            </span>
-        </li>
+            <div class="mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">{% block checkout_title %}{% endblock %}</h1>
+            </div>
 
-        <li class="nav-item step5 {% if step == 5 %}active{% else %}disabled{% endif %} ">
-            <span class="navbar-text">
-                {% trans "5. Confirmation" %}
-            </span>
-        </li>
-    {% endspaceless %}
-  </ul><!-- /navbar-inner -->
-</nav><!-- /navbar -->
+            {% block modal %}
+                {% load flatpages %}
+                {% get_flatpages '/order/' as flatpages %}
+                {% for page in flatpages %}
+                    <div id="{{ page.title|slugify }}" class="fixed z-50 inset-0 overflow-y-auto hidden">
+                        <div class="flex items-center justify-center min-h-screen px-4">
+                            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
+                                <div class="flex justify-between items-center border-b pb-4 mb-4">
+                                    <h3 class="text-xl font-medium text-gray-900">{{ page.title }}</h3>
+                                    <button class="text-gray-400 hover:text-gray-600" onclick="this.closest('div[id]').classList.add('hidden')">&times;</button>
+                                </div>
+                                <div class="prose max-w-none">
+                                    {{ page.content|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+
+            {% block content %}{% endblock %}
+
+        </div>
+    </div>
+
+    {% include "oscar/partials/footer_checkout.html" %}
+
+{% endblock %}

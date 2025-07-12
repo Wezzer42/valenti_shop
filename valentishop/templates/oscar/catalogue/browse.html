@@ -1,0 +1,121 @@
+{% extends "oscar/layout_2_col.html" %}
+
+{% load basket_tags %}
+{% load category_tags %}
+{% load product_tags %}
+{% load i18n %}
+
+{% block title %}
+    {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
+{% endblock %}
+
+{% block headertext %}{{ summary }}{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="text-sm text-gray-500 mb-4" aria-label="breadcrumb">
+    <ol class="flex items-center space-x-2">
+      <li>
+        <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">
+          {% trans "Home" %}
+        </a>
+      </li>
+      <li>/</li>
+      <li class="text-gray-700 font-medium" aria-current="page">
+        {{ summary }}
+      </li>
+    </ol>
+  </nav>
+{% endblock breadcrumbs %}
+
+
+{% block column_left %}
+  {% category_tree as tree_categories %}
+  {% if tree_categories %}
+    <h2 class="text-lg font-semibold text-gray-800 mb-2">{% trans "Show results for" %}</h2>
+    <div class="bg-gray-50 rounded-md p-4 mb-6">
+      <ul class="space-y-2 text-sm text-gray-700">
+        {% for tree_category in tree_categories %}
+          <li>
+            <a href="{{ tree_category.url }}"
+               class="block {% if tree_category.pk == category.pk %}font-bold text-blue-600{% else %}hover:text-blue-500{% endif %}">
+              {{ tree_category.name }}
+            </a>
+            {% if tree_category.has_children %}
+              <ul class="ml-4 mt-1 space-y-1">
+            {% else %}
+              </li>
+            {% endif %}
+            {% for n in tree_category.num_to_close %}
+              </ul></li>
+            {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if has_facets %}
+    <h2 class="text-lg font-semibold text-gray-800 mb-2">{% trans "Refine by" %}</h2>
+    <div class="bg-gray-50 rounded-md p-4 space-y-4">
+      {% for field, data in facet_data.items %}
+        {% if data.results %}
+          {% include 'oscar/search/partials/facet.html' with name=data.name items=data.results %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  <form method="get" class="mb-6">
+    {% for value in selected_facets %}
+      <input type="hidden" name="selected_facets" value="{{ value }}" />
+    {% endfor %}
+    <input type="hidden" name="q" value="{{ search_form.q.value|default_if_none:"" }}" />
+
+    {% if paginator.count %}
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-gray-600">
+          {% if paginator.num_pages > 1 %}
+            {% blocktrans with start=page_obj.start_index end=page_obj.end_index count num_results=paginator.count %}
+              <strong>{{ num_results }}</strong> result - showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong>.
+            {% plural %}
+              <strong>{{ num_results }}</strong> results - showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong>.
+            {% endblocktrans %}
+          {% else %}
+            {% blocktrans count num_results=paginator.count %}
+              <strong>{{ num_results }}</strong> result.
+            {% plural %}
+              <strong>{{ num_results }}</strong> results.
+            {% endblocktrans %}
+          {% endif %}
+        </p>
+        {% if form %}
+          <div>{% include "oscar/partials/form_field.html" with field=form.sort_by style='horizontal' %}</div>
+        {% endif %}
+      </div>
+    {% else %}
+      <p class="text-sm text-gray-500">{% trans "<strong>0</strong> results." %}</p>
+    {% endif %}
+  </form>
+
+  {% if products %}
+    <section>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% block products %}
+          {% for product in products %}
+            <div>{% render_product product.object %}</div>
+          {% endfor %}
+        {% endblock %}
+      </div>
+      {% include "oscar/partials/pagination.html" %}
+    </section>
+  {% else %}
+    <p class="text-sm text-gray-500 italic mt-6">{% trans "No products found." %}</p>
+  {% endif %}
+{% endblock content %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.search.init();
+{% endblock %}

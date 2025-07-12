@@ -25,4 +25,5 @@ class AdvancedRadioSelect(forms.RadioSelect):
         )
         if force_str(value) in self.disabled_values:
             option["attrs"]["disabled"] = True
+        option["selected"] = selected
         return option

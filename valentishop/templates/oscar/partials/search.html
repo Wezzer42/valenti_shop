@@ -1,16 +1,18 @@
 {% load i18n %}
 
-<form class="search-form d-flex align-items-center mx-3" method="GET" action="{% url 'search:search' %}">
-    <input 
-        type="text" 
-        class="form-control search-input" 
-        name="q" 
-        id="id_q" 
-        placeholder="{% trans 'Search' %}" 
-        aria-label="{% trans 'Search' %}">
-    <button 
-        class="btn search-btn" 
-        type="submit">
-        <i class="fas fa-search"></i>
-    </button>
+<form method="GET" action="{% url 'search:search' %}" class="flex items-center space-x-2">
+  <input
+    type="text"
+    name="q"
+    id="id_q"
+    placeholder="{% trans 'Search' %}"
+    aria-label="{% trans 'Search' %}"
+    class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm w-48 sm:w-64"
+  >
+  <button
+    type="submit"
+    class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800 text-sm"
+  >
+    {% trans "Search" %}
+  </button>
 </form>

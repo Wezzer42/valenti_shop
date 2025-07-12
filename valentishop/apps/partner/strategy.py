@@ -83,11 +83,21 @@ class NoTax(BaseNoTax):
         )
 
     def parent_pricing_policy(self, product, children_stock):
-        stockrecords = [x[1] for x in children_stock if x[1].price is not None]
+        
+        stockrecords = [x[1] for x in children_stock if x[1] is not None]
         if not stockrecords:
             return UnavailablePrice()
         # We take price from first record
-        stockrecord = stockrecords[0]
+        minimum_price = None
+        for price in stockrecords:
+            if price.price is not None:
+                if minimum_price is None or price.price < minimum_price and price.price!=0:
+                    minimum_price = price.price
+                    stockrecord = price
+                    
+        if stockrecord.price is None:
+            return UnavailablePrice()
+        
         return FixedPrice(
             currency=stockrecord.price_currency,
             excl_tax=stockrecord.price,

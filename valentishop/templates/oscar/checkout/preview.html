@@ -1,39 +1,72 @@
-{% extends "oscar/checkout/checkout.html" %}
+{% extends "oscar/layout.html" %}
 {% load i18n %}
+{% load category_tags %}
 
-{% block title %}
-    {% trans "Order preview" %} | {{ block.super }}
-{% endblock %}
+{% block layout %}
 
-{% block checkout_nav %}
-    {% include 'oscar/checkout/nav.html' with step=4 %}
-{% endblock %}
-
-{% block checkout_title %}
-    {% trans "Preview order" %}
-{% endblock %}
-
-{% block place_order %}
-    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="place_order" />
-
-        {% comment %}
-            When submitting sensitive data on the payment details page (eg a bankcard)
-            we don't want to save the data and so we pass the bound form to the preview
-            template and render it in a hidden div.  Then the payment information will
-            get re-submitted when the user confirms the order.
-        {% endcomment %}
-        <div style="display:none">
-            {% block hiddenforms %}{% endblock %}
-        </div>
-
-        <div class="form-group clearfix">
-            <div class="row">
-                <div class="col-sm-3 offset-sm-9">
-                     <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
-                </div>
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-6">
+                {% include "oscar/partials/brand.html" %}
             </div>
         </div>
-    </form>
-{% endblock place_order %}
+        {% block checkout_nav %}
+        {% include 'oscar/checkout/nav.html' with step=4 %}
+        {% endblock %}
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-8">
+            {% include 'oscar/partials/alert_messages.html' %}
+
+            <div class="mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">{% block checkout_title %}{% trans "Preview order" %}{% endblock %}</h1>
+            </div>
+
+            {% block modal %}
+                {% load flatpages %}
+                {% get_flatpages '/order/' as flatpages %}
+                {% for page in flatpages %}
+                    <div id="{{ page.title|slugify }}" class="fixed z-50 inset-0 overflow-y-auto hidden">
+                        <div class="flex items-center justify-center min-h-screen px-4">
+                            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
+                                <div class="flex justify-between items-center border-b pb-4 mb-4">
+                                    <h3 class="text-xl font-medium text-gray-900">{{ page.title }}</h3>
+                                    <button class="text-gray-400 hover:text-gray-600" onclick="this.closest('div[id]').classList.add('hidden')">&times;</button>
+                                </div>
+                                <div class="prose max-w-none">
+                                    {{ page.content|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+
+            {% block content %}
+            {% block payment_details %}
+            {% block payment_details_content %}
+                <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form" class="space-y-6">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="place_order" />
+
+                    <div class="hidden">
+                        {% block hiddenforms %}{% endblock %}
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button id="place-order" type="submit" class="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 font-semibold rounded-lg text-lg" data-loading-text="{% trans 'Submitting...' %}">
+                            {% trans "Place order" %}
+                        </button>
+                    </div>
+                </form>
+            {% endblock payment_details_content %}
+            {% endblock payment_details %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+    {% include "oscar/partials/footer_checkout.html" %}
+
+{% endblock %}

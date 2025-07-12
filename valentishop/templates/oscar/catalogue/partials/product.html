@@ -1,0 +1,61 @@
+{% load display_tags %}
+{% load i18n %}
+{% load image_tags %}
+{% load reviews_tags %}
+
+{% block product %}
+<article class="border rounded-lg shadow-sm p-4 hover:shadow-md transition">
+  
+  {% block product_image %}
+    <div class="w-full aspect-[3/4] mb-4 overflow-hidden rounded">
+      {% with image=product.primary_image %}
+        {% oscar_thumbnail image.original "x300" upscale=False as thumb %}
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="object-cover w-full h-full" />
+        </a>
+      {% endwith %}
+    </div>
+  {% endblock %}
+
+{% block product_review %}
+  {% iffeature "reviews" %}
+    <div class="flex space-x-0.5 mb-2">
+      {% for i in "12345"|make_list %}
+        {% if forloop.counter <= product.rating|default:0 %}
+          <!-- Заполненная звезда -->
+          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.262 3.885h4.084c.97 0 1.372 1.24.588 1.81l-3.306 2.404 1.263 3.885c.3.922-.755 1.688-1.538 1.118L10 13.347l-3.303 2.402c-.783.57-1.838-.196-1.539-1.118l1.263-3.885-3.306-2.404c-.784-.57-.382-1.81.588-1.81h4.084L9.049 2.927z" />
+          </svg>
+        {% else %}
+          <!-- Контурная звезда -->
+          <svg class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.36 7.25h7.631c.97 0 1.372 1.24.588 1.81l-6.18 4.494 2.36 7.25c.3.922-.755 1.688-1.538 1.118L12 18.347l-6.18 4.494c-.783.57-1.838-.196-1.539-1.118l2.36-7.25-6.18-4.494c-.784-.57-.382-1.81.588-1.81h7.631l2.36-7.25z" />
+          </svg>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endiffeature %}
+{% endblock %}
+
+
+  {% block product_title %}
+    <h3 class="text-sm font-semibold text-gray-800 mb-2">
+      <a href="{{ product.get_absolute_url }}" title="{{ product.get_title }}" class="hover:text-blue-500">
+        {{ product.get_title|truncatewords:4 }}
+      </a>
+    </h3>
+  {% endblock %}
+
+  {% block product_price %}
+    <div class="text-sm text-gray-900 space-y-2">
+      {% include "oscar/catalogue/partials/stock_record.html" %}
+      {% if not product.is_parent and not product.has_options %}
+        {% include "oscar/catalogue/partials/add_to_basket_form_compact.html" %}
+      {% endif %}
+    </div>
+  {% endblock %}
+
+</article>
+{% endblock %}
+

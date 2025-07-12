@@ -97,7 +97,7 @@ INSTALLED_APPS = [
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
-MODELTRANSLATION_LANGUAGES = ('en', 'ru')
+MODELTRANSLATION_LANGUAGES = ('en', 'ru', 'zh_hans')
 OSCAR_SHOP_NAME = 'VALENTI'
 OSCAR_DEFAULT_CURRENCY = 'RUB'
 OSCAR_SEARCH_FACETS = {
@@ -153,7 +153,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             location('templates'),
-            location('apps/forms/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

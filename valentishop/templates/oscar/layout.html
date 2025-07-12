@@ -2,46 +2,45 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
-    <link rel="stylesheet" type="text/css" href="{% static "css/valenti.css" %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{ block.super }}
 {% endblock %}
 
 {% block layout %}
-    {# Top-horizontal bar with account, notifictions, dashboard links #}
-    {% include "oscar/partials/nav_accounts.html" %}
-
-
-    {# Main content of page - other layout templates may override this block #}
-    {% block content_wrapper %}
-        <div class="container-fluid page">
-            <div class="page_inner">
-                {% block breadcrumbs %}{% endblock %}
-                {% block header %}
-                    <div class="page-header">
-                        <h1>{% block headertext %}{% endblock %}</h1>
-                    </div>
-                {% endblock %}
-                {% include "oscar/partials/alert_messages.html" %}
-                {% block subnavigation %}{% endblock %}
-                <div class="content">
-                    {% block subheader %}{% endblock subheader %}
-
-                    {# Div exists for AJAX updates to entire content section #}
-                    <div id="content_inner">{% block content %}{% endblock %}</div>
-                </div>
-            </div>
-        </div>
+  <header>
+    {% block navigation %}
+      {% include "oscar/partials/nav_primary copy.html" %}
     {% endblock %}
+  </header>
 
-    {% include "oscar/partials/footer.html" %}
+  {% block content_wrapper %}
+  <main class="container mx-auto px-4">
+    <div class="py-6">
+      {% block breadcrumbs %}{% endblock %}
+      {% block header %}
+        <div class="mb-4">
+          <h1 class="text-2xl font-semibold">{% block headertext %}{% endblock %}</h1>
+        </div>
+      {% endblock %}
+
+      {% include "oscar/partials/alert_messages.html" %}
+      {% block subnavigation %}{% endblock %}
+
+      <div class="content">
+        {% block subheader %}{% endblock %}
+        <div id="content_inner">{% block content %}{% endblock %}</div>
+      </div>
+    </div>
+  </main>
+  {% endblock %}
+
+  {% include "oscar/partials/footer.html" %}
 {% endblock %}
 
-{# Local scripts #}
 {% block scripts %}
     {{ block.super }}
-    <!-- Twitter Bootstrap -->
     <script src="{% static "oscar/js/bootstrap4/bootstrap.bundle.min.js" %}"></script>
-    <!-- Oscar -->
     <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
 {% endblock %}
 

@@ -1,28 +1,34 @@
 
-<div class="navbar primary">
-    {% load flatpages %}
-    {% get_flatpages '/order/' as flatpages %}
-    {% if flatpages %}
-        <div class="navbar-inner">
-            <div class="container" style="width: auto;">
-                <a class="btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fas fa-bars"></i>
-                </a>
-                <a class="brand hidden" href="{{ homepage_url }}">{{ shop_name }}</a>
-                <div class="navbar-collapse">
+<nav class="bg-gray-800 text-white">
+  {% load flatpages %}
+  {% get_flatpages 'oscar/order/' as flatpages %}
+  {% if flatpages %}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Мобильный тогглер -->
+      <button @click="openFlatpages = !openFlatpages" class="text-white focus:outline-none md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-                    <ul class="nav">
-                        <!-- Links to modal flatpages -->
-                        {% for page in flatpages %}
-                            <li>
-                                <a data-toggle="modal" href="#{{ page.title|slugify }}">{{ page.title }}</a>
-                            </li>
-                        {% endfor %}
-                        <!-- Delete this if other links present -->
-                        <li><a href="{{ homepage_url }}">&larr;</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </div><!-- /navbar-inner -->
-    {% endif %}
-</div><!-- /navbar -->
+      <!-- Название сайта -->
+      <a href="{{ homepage_url }}" class="hidden md:block text-lg font-semibold text-white">{{ shop_name }}</a>
+
+      <!-- Меню -->
+      <div :class="{ 'hidden': !openFlatpages }" class="md:flex md:items-center">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+          {% for page in flatpages %}
+            <li>
+              <a href="#{{ page.title|slugify }}" class="hover:text-blue-400" data-toggle="modal">{{ page.title }}</a>
+            </li>
+          {% endfor %}
+          <li>
+            <a href="{{ homepage_url }}" class="hover:text-blue-400">&larr;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</nav>

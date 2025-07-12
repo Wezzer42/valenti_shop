@@ -1,19 +1,32 @@
 {% load widget_tweaks %}
 
-<span class="error-block">{{ form.non_field_errors }}</span>
-{% for field in form %}
+{% if form.non_field_errors %}
+  <div class="text-sm text-red-600 mb-2">
+    {% for error in form.non_field_errors %}
+      <p class="flex items-start gap-1">
+        <svg class="w-4 h-4 mt-0.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        {{ error }}
+      </p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="flex flex-wrap gap-3 items-end">
+  {% for field in form %}
     {% if field.is_hidden %}
-        {{ field }}
+      {{ field }}
     {% else %}
-        <span class="form-group {% if field.errors %}error{% endif %}">
-            <span class="mr-sm-1">{{ field.label_tag }}</span>
-            {% render_field field class+="form-control mr-sm-2" %}
-            {% for error in field.errors %}
-                <ul class="error-block">
-                    <li>{{ error }}</li>
-                </ul>
-            {% endfor %}
-            {# No help text as it wraps #}
-        </span>
+      <div class="flex flex-col text-sm {% if field.errors %}text-red-600{% else %}text-gray-700{% endif %}">
+        <label for="{{ field.id_for_label }}" class="mb-1">{{ field.label }}</label>
+        {% render_field field class="px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring focus:ring-blue-300 w-full sm:w-auto" %}
+
+        {% for error in field.errors %}
+          <p class="text-red-600 mt-1">{{ error }}</p>
+        {% endfor %}
+      </div>
     {% endif %}
-{% endfor %}
+  {% endfor %}
+</div>

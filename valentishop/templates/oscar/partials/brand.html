@@ -1,1 +1,6 @@
-<div class="mr-3 h1"><a href="{{ homepage_url }}" class="brand-title">{% block brand_title %}{{ shop_name }}{% endblock %}</a><small> {{ shop_tagline }}</small></div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline space-y-1 sm:space-y-0">
+        <a href="{{ homepage_url }}" class="text-2xl font-bold text-gray-800 mr-2">
+          {% block brand_title %}{{ shop_name }}{% endblock %}
+        </a>
+        <small class="text-gray-500 text-sm">{{ shop_tagline }}</small>
+      </div>

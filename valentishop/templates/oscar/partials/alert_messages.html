@@ -1,40 +1,37 @@
-{% load string_filters %}
+<div x-data="{ toasts: [] }"
+     x-init="
+        {% if messages %}
+          {% for message in messages %}
+            toasts.push({
+              type: '{{ message.tags|default:"info" }}',
+              content: '{{ message|escapejs|safe }}',
+              show: true
+            });
+          {% endfor %}
+        {% endif %}
+     "
+     class="fixed top-5 right-5 z-50 space-y-3">
 
-{% comment %}
-Use message tags to control these alerts.  Available tags include:
-- safe: allow HTML in the message
-- block: for longer messages - this adds extra padding
-- noicon: don't show an icon
-- error/success/info - these change the connotation of the alert
-{% endcomment %}
-
-<div id="messages">
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-dismissible {% for tag in message.tags|split %}alert-{% if tag == 'error' %}danger{% else %}{{ tag }}{% endif %} {% endfor %} fade show">
-            <a class="close" data-dismiss="alert" href="#">&times;</a>
-            <div class="alertinner {% if 'noicon' not in message.tags %}wicon{% endif %}">
-                {% if 'noicon' not in message.tags %}
-                    {# Include an icon by default #}
-                    {% if 'success' in message.tags %}
-                        <i class="fas fa-check-circle"></i>
-                    {% elif 'info' in message.tags %}
-                        <i class="fas fa-info-circle"></i>
-                    {% elif 'warning' in message.tags %}
-                        <i class="fas fa-exclamation-triangle"></i>
-                    {% elif 'danger' in message.tags or 'error' in message.tags %}
-                        <i class="fas fa-exclamation-circle"></i>
-                    {% endif %}
-                {% endif %}
-
-                {# Allow HTML to be embedded in messages #}
-                {% if 'safe' in message.tags %}
-                    {{ message|safe }}
-                {% else %}
-                    {{ message }}
-                {% endif %}
-            </div>
-        </div>
-    {% endfor %}
-{% endif %}
+  <template x-for="(toast, index) in toasts" :key="index">
+    <div x-show="toast.show"
+         x-transition
+         x-init="setTimeout(() => toast.show = false, 10000)"
+         class="w-72 px-4 py-3 rounded shadow-lg text-sm"
+         :class="{
+           'bg-green-600 text-white': toast.type.includes('success'),
+           'bg-white text-gray-900': toast.type.includes('info'),
+           'bg-yellow-500 text-white': toast.type.includes('warning'),
+           'bg-red-600 text-white': toast.type.includes('error') || toast.type.includes('danger'),
+           'bg-gray-700 text-white': !['success','info','warning','error','danger'].some(t => toast.type.includes(t))
+         }">
+      <div class="flex items-start justify-between">
+        <span x-html="toast.content"></span>
+        <button @click="toast.show = false" class="ml-4 text-gray-600 hover:text-gray-900">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </template>
 </div>

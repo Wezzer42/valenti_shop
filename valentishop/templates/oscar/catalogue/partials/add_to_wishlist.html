@@ -1,0 +1,81 @@
+{% load i18n %}
+{% load wishlist_tags %}
+
+{% if user.is_authenticated %}
+  {% with wishlists=user.wishlists.all %}
+    {% wishlists_containing_product wishlists product as product_wishlists %}
+
+    {% if wishlists %}
+      <!-- Выпадающее меню для выбора вишлиста -->
+      <div x-data="{ open: false }" class="relative inline-block text-left mt-4">
+        <button @click="open = !open"
+                class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+          {% trans "Add to wish list" %}
+        </button>
+
+        <div x-show="open" @click.away="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg bg-white border border-gray-200">
+          <ul class="py-1 text-sm text-gray-700">
+            {% for wishlist in wishlists %}
+              {% if wishlist not in product_wishlists %}
+                <li>
+                  <a href="{% url 'customer:wishlists-add-product' key=wishlist.key product_pk=product.pk %}"
+                     class="block px-4 py-2 hover:bg-gray-100">
+                    {% blocktrans with name=wishlist.name %}
+                      Add to '{{ name }}' wish list
+                    {% endblocktrans %}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            <li>
+              <a href="{% url 'customer:wishlists-create-with-product' product_pk=product.pk %}"
+                 class="block px-4 py-2 hover:bg-gray-100 text-blue-600">
+                {% trans "Create a new wishlist" %}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    {% else %}
+      <!-- Если у пользователя нет вишлистов -->
+      <form id="add_to_wishlist_form"
+            action="{% url 'customer:wishlists-add-product' product_pk=product.pk %}"
+            method="post"
+            class="mt-4">
+        {% csrf_token %}
+        <button type="submit"
+                class="w-full bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md shadow-sm hover:bg-gray-50 text-sm">
+          {% trans "Add to wish list" %}
+        </button>
+      </form>
+    {% endif %}
+
+    <!-- Если товар уже в одном или нескольких вишлистах -->
+    {% for wishlist in product_wishlists %}
+      <form action="{% url 'customer:wishlists-remove-product' key=wishlist.key product_pk=product.id %}"
+            method="post"
+            class="mt-2 flex items-center justify-between text-sm bg-gray-100 border border-gray-200 px-3 py-2 rounded">
+        {% csrf_token %}
+        <div>
+          {% blocktrans with name=wishlist.name url=wishlist.get_absolute_url %}
+            Product is in <a href="{{ url }}" class="text-blue-600 hover:underline">'{{ name }}'</a> wishlist.
+          {% endblocktrans %}
+        </div>
+        <button type="submit"
+                class="text-red-600 hover:underline"
+                data-loading-text="{% trans 'Removing...' %}">
+          {% trans "Remove" %}
+        </button>
+      </form>
+    {% endfor %}
+  {% endwith %}
+{% else %}
+  <!-- Неавторизован -->
+  <div class="mt-4">
+    <button class="w-full bg-gray-200 text-gray-500 cursor-not-allowed px-4 py-2 rounded text-sm"
+            title="{% trans 'Please login to add products to a wish list.' %}"
+            disabled>
+      {% trans "Add to wish list" %}
+    </button>
+  </div>
+{% endif %}

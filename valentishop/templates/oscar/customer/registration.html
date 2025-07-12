@@ -1,37 +1,45 @@
 {% extends "oscar/layout.html" %}
-
 {% load i18n %}
 
 {% block title %}
-    {% trans 'Register' %} | {{ block.super }}
+  {% trans 'Login or register' %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans 'Register' %}</li>
-        </ol>
-    </nav>
+  <nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+    <ol class="list-none p-0 inline-flex space-x-2">
+      <li>
+        <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">{% trans 'Home' %}</a>
+        <span>/</span>
+      </li>
+      <li class="text-gray-700" aria-current="page">{% trans 'Login or register' %}</li>
+    </ol>
+  </nav>
 {% endblock %}
 
-{% block headertext %}
-    {% trans "Register" %}
-{% endblock %}
+{% block header %}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-sm-6 register_form">
-            <form id="register_form" method="post">
-                {% csrf_token %}
-                {% include "oscar/partials/form_fields.html"  %}
-                <button name="registration_submit" type="submit" value="Register" class="btn btn-primary btn-lg" data-loading-text="{%trans 'Registering...' %}">{% trans 'Register' %}</button>
-                {% if cancel_url %}
-                    {% trans "or" %} <a href="{{ cancel_url }}">{% trans "cancel" %}</a>.
-                {% endif %}
-            </form>
-        </div>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <form id="login_form" action="{{ request.get_full_path }}" method="post" class="bg-gray-50 p-6 rounded-md shadow">
+      <h2 class="text-lg font-semibold mb-4">{% trans 'Log In' %}</h2>
+      {% csrf_token %}
+      {% include "oscar/partials/form_fields.html" with form=login_form %}
+      <p class="text-sm mt-2">
+        <a href="{% url 'password-reset' %}" class="text-blue-600 hover:underline">{% trans "I've forgotten my password" %}</a>
+      </p>
+      <button name="login_submit" type="submit" value="Log In" class="mt-4 inline-flex items-center px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition" data-loading-text="{% trans "Logging in..." %}">
+        {% trans 'Log In' %}
+      </button>
+    </form>
+
+    <form id="register_form" action="{{ request.get_full_path }}" method="post" class="bg-gray-50 p-6 rounded-md shadow">
+      <h2 class="text-lg font-semibold mb-4">{% trans 'Register' %}</h2>
+      {% csrf_token %}
+      {% include "oscar/partials/form_fields.html" with form=registration_form %}
+      <button name="registration_submit" type="submit" value="Register" class="mt-4 inline-flex items-center px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition" data-loading-text="{% trans 'Registering...' %}">
+        {% trans 'Register' %}
+      </button>
+    </form>
+  </div>
 {% endblock content %}

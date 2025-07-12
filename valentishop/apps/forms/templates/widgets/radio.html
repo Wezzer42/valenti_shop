@@ -1,23 +1,40 @@
 {% with id=widget.attrs.id %}
-<div {% if id %}id="{{ id }}"{% endif %} class="radio-container {% if widget.attrs.class %}{{ widget.attrs.class }}{% endif %}">
-    {% for group, options, index in widget.optgroups %}
-        {% if group %}
-            <div class="radio-group-title"><label>{{ group }}</label></div>
-        {% endif %}
+<div {% if id %}id="{{ id }}"{% endif %} class="flex flex-wrap gap-3 {% if widget.attrs.class %}{{ widget.attrs.class }}{% endif %}">
+  {% for group, options, index in widget.optgroups %}
+    {% if group %}
+      <div class="w-full text-sm text-gray-500 font-medium">
+        <label>{{ group }}</label>
+      </div>
+    {% endif %}
 
-        <!-- Обёртка для радио-кнопки и визуальная стилизация -->
-        {% for option in options %}
-        <label class="radio-option btn btn-outline-secondary m-2">
-            <input 
-                type="radio" 
-                name="{{ widget.name }}" 
-                value="{{ option.value }}"
-                id="{{ option.attrs.id }}"
-                class="d-none"
-                {% if option.attrs.checked %}checked{% endif %}>
-            <span>{{ option.label }}</span>
+    {% for option in options %}
+      <div class="w-20 sm:w-24">
+        <input 
+          type="radio" 
+          name="{{ widget.name }}" 
+          value="{{ option.value }}"
+          id="{{ option.attrs.id }}"
+          class="hidden peer"
+          {% if option.attrs.disabled %}disabled{% endif %}
+          {% if option.selected %}checked{% endif %}
+        >
+        <label for="{{ option.attrs.id }}"
+               class="
+                 flex flex-col items-center justify-center text-center rounded-md px-1 py-1 h-14 sm:h-16 w-full
+                 text-xs sm:text-sm transition-all duration-150 ease-in-out
+                 {% if option.attrs.disabled %}
+                   bg-gray-100 text-gray-400 border border-gray-200
+                   hover:bg-gray-100 hover:border-gray-200 cursor-default
+                 {% else %}
+                   bg-white text-gray-700 border border-gray-300 cursor-pointer
+                   hover:bg-blue-50 hover:border-blue-400
+                   peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:border-blue-500
+                 {% endif %}
+               ">
+          {{ option.label|safe }}
         </label>
-        {% endfor %}
+      </div>
     {% endfor %}
+  {% endfor %}
 </div>
 {% endwith %}

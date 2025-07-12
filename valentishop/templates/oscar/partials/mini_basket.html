@@ -1,24 +1,32 @@
 {% load currency_filters %}
 {% load i18n %}
 
-<div class="basket-mini col-sm-5 text-right d-none d-md-block">
-    <div class="btn-group dropright"> <!-- Используем dropright для появления дропдауна слева -->
-        
-        <!-- Кнопка корзины с белой иконкой -->
-        <button type="button" class="{% block mini_basket_btn_classes %}btn btn-sm border-0 text-white{% endblock %}" 
-                onclick="window.location.href='{% url 'basket:summary' %}';">
-            <i class="fas fa-shopping-cart"></i>
-        </button>
+<div class="hidden md:flex flex-col text-right space-y-2 text-sm text-gray-800">
+  <div>
+    <strong>{% trans "Basket total:" %}</strong>
+    {% if request.basket.is_tax_known %}
+      {{ request.basket.total_incl_tax|currency:request.basket.currency }}
+    {% else %}
+      {{ request.basket.total_excl_tax|currency:request.basket.currency }}
+    {% endif %}
+  </div>
 
-        <!-- Кнопка для открытия дропдауна с белой стрелкой вниз -->
-        <button type="button" class="{% block mini_basket_toggle_classes %}btn btn-sm border-0 text-white dropdown-toggle dropdown-toggle-split{% endblock %}" 
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-chevron-down"></i> <!-- Стрелочка вниз -->
-        </button>
+  <div class="relative inline-flex">
+    <button type="button"
+            class="{% block mini_basket_btn_classes %}px-4 py-2 border border-gray-300 rounded-l bg-white hover:bg-gray-100{% endblock %}"
+            onclick="window.location.href='{% url 'basket:summary' %}'">
+      {% trans "View basket" %}
+    </button>
+    <button type="button"
+            class="{% block mini_basket_toggle_classes %}px-3 border border-l-0 border-gray-300 rounded-r bg-white hover:bg-gray-100{% endblock %}"
+            @click="dropdownOpen = !dropdownOpen">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
 
-        <!-- Дропдаун меню: появляется внизу и слева -->
-        <div class="{% block mini_basket_dropdown_classes %}dropdown-menu{% endblock %}" style="left: -110%; top: 100%;">
-            {% include "oscar/basket/partials/basket_quick.html" %}
-        </div>
+    <div x-show="dropdownOpen"
+         x-cloak
+         class="{% block mini_basket_dropdown_classes %}absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded shadow-lg z-50{% endblock %}">
+      {% include "oscar/basket/partials/basket_quick.html" %}
     </div>
+  </div>
 </div>

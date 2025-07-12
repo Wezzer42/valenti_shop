@@ -1,0 +1,71 @@
+{% extends "oscar/layout.html" %}
+{% load history_tags %}
+{% load i18n %}
+
+{% block title %}
+  {% trans "All reviews" %} | {{ product.title }} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="text-sm text-gray-500 mb-6" aria-label="breadcrumb">
+  <ol class="flex flex-wrap items-center space-x-2">
+    <li>
+      <a href="{{ homepage_url }}" class="text-blue-600 hover:underline">{% trans "Home" %}</a>
+    </li>
+
+    {% with category=product.categories.all.0 %}
+      {% for c in category.get_ancestors_and_self %}
+        <li>/</li>
+        <li>
+          <a href="{{ c.get_absolute_url }}" class="text-blue-600 hover:underline">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+      <li>/</li>
+      <li>
+        <a href="{{ product.get_absolute_url }}" class="text-blue-600 hover:underline">{{ product.title }}</a>
+      </li>
+    {% endwith %}
+
+    <li>/</li>
+    <li class="text-gray-700">{% trans "All reviews" %}</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block headertext %}
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">{% trans "Customer reviews" %}</h1>
+{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto space-y-8">
+
+  {% include 'oscar/catalogue/reviews/review_product.html' %}
+
+  {% if reviews %}
+    <!-- Форма сортировки -->
+    <form method="get" class="flex flex-wrap items-center gap-3 text-sm">
+      {% include "oscar/partials/form_fields_inline.html" with form=form %}
+      <button type="submit"
+              class="px-4 py-1.5 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">
+        {% trans "Go" %}
+      </button>
+    </form>
+
+    <hr class="my-6 border-gray-200" />
+
+    <!-- Список отзывов -->
+    <div class="space-y-6">
+      {% for review in reviews %}
+        {% include 'oscar/catalogue/partials/review.html' %}
+      {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    {% include 'oscar/partials/pagination.html' %}
+
+  {% else %}
+    <p class="text-gray-600 italic">{% trans "This product does not have any reviews yet." %}</p>
+  {% endif %}
+
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load currency_filters %}
+{% load i18n %}
+{% load purchase_info_tags %}
+
+{% purchase_info_for_product request product as session %}
+
+{% if session.price.exists %}
+  {% if session.price.excl_tax == 0 %}
+    <p class="text-green-600 font-semibold">{% trans "Free" %}</p>
+  {% elif session.price.is_tax_known %}
+    <p class="text-gray-900 font-semibold text-lg">{{ session.price.incl_tax|currency:session.price.currency }}</p>
+  {% else %}
+    <p class="text-gray-900 font-semibold text-lg">{{ session.price.excl_tax|currency:session.price.currency }}</p>
+  {% endif %}
+{% else %}
+  <p class="text-gray-400 italic">&nbsp;</p>
+{% endif %}
+
+{% if session.price.exists %}
+  <p class="flex items-center text-sm mt-1
+            {% if session.availability.is_available_to_buy %}
+              text-green-600
+            {% else %}
+              text-red-500
+            {% endif %}">
+    {% if session.availability.is_available_to_buy %}
+      <!-- Heroicon: check-circle -->
+      <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m7 4a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    {% else %}
+      <!-- Heroicon: x-circle -->
+      <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    {% endif %}
+
+    {% if verbose %}
+      {{ session.availability.message }}
+    {% else %}
+      {{ session.availability.short_message }}
+    {% endif %}
+  </p>
+{% else %}
+  <p class="flex items-center text-sm text-red-500 mt-1">
+    <!-- Heroicon: x-circle -->
+    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    {% trans "Unavailable" %}
+  </p>
+{% endif %}

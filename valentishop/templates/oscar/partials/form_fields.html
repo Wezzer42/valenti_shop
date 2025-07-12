@@ -1,19 +1,24 @@
 {% load i18n %}
 
 {% if form.is_bound and not form.is_valid %}
-    <div class="alert alert-danger">
-        <strong>{% trans "Oops! We found some errors" %}</strong> - {% trans "please check the error messages below and try again" %}
-    </div>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+    <strong>{% trans "Oops! We found some errors" %}</strong> –
+    {% trans "please check the error messages below and try again" %}
+  </div>
 {% endif %}
 
 {% if form.non_field_errors %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <i class="fas fa-exclamation"></i> {{ error }}
-        </div>
-    {% endfor %}
+  {% for error in form.non_field_errors %}
+    <div class="flex items-start gap-2 bg-red-50 border border-red-300 text-red-700 px-4 py-2 rounded mb-2 text-sm">
+      <svg class="w-5 h-5 mt-0.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      <span>{{ error }}</span>
+    </div>
+  {% endfor %}
 {% endif %}
 
 {% for field in form %}
-    {% include 'oscar/partials/form_field.html' with field=field style=style %}
+  {% include 'oscar/partials/form_field.html' with field=field style=style %}
 {% endfor %}

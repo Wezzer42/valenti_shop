@@ -1,35 +1,33 @@
 {% extends "oscar/layout.html" %}
 
 {% block content_wrapper %}
-    <div class="container-fluid page">
-        <div class="page_inner">
-            {% block breadcrumbs %}{% endblock %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-            <div class="row">
+    <!-- Sidebar Left -->
+    <aside class="md:col-span-3">
+      {% block column_left %}{% endblock %}
+    </aside>
 
-                <aside class="col-sm-3">
-                    {% block column_left %}
-                    {% endblock %}
-                </aside>
+    <!-- Main Content -->
+    <div class="md:col-span-6">
+      {% block breadcrumbs %}{% endblock %}
+      {% block header %}
+        <div class="mb-6">
+          <h1 class="text-2xl font-semibold text-gray-900">{% block headertext %}{% endblock %}</h1>
+        </div>
+      {% endblock %}
 
-                <div class="col-sm-6">
-                    {% block header %}
-                    <div class="page-header">
-                        <h1>{% block headertext %}{% endblock %}</h1>
-                    </div>
-                    {% endblock %}
-                    {% include "oscar/partials/alert_messages.html" %}
+      {% include "oscar/partials/alert_messages.html" %}
 
-                    {% block content %}{% endblock %}
-                </div>
+      {% block content %}{% endblock %}
+    </div>
 
-                <aside class="col-sm-3">
-                    {% block column_right %}
-                    {% endblock %}
-                </aside>
+    <!-- Sidebar Right -->
+    <aside class="md:col-span-3">
+      {% block column_right %}{% endblock %}
+    </aside>
 
-            </div><!-- /row -->
-
-        </div><!-- /page_inner -->
-    </div><!-- /container -->
+  </div>
+</div>
 {% endblock %}
