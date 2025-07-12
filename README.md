@@ -5,7 +5,7 @@ This project demonstrates how to set up and customize an online store using Pyth
 
 ---
 
-## ✨ Features
+##  Features
 
 - Django Oscar integration
 - **Tailwind CSS** for modern, responsive design
@@ -16,7 +16,7 @@ This project demonstrates how to set up and customize an online store using Pyth
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - Python 3.x
 - Django
